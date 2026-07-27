@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>99COMLABS — Software, Hardware & Cloud Engineering</title>
+    <meta name="description" content="99COMLABS is an integrated tech innovation lab engineering custom software, embedded hardware & IoT, scalable cloud infrastructure, and digital growth solutions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%23050505'/><rect x='6' y='6' width='28' height='28' rx='6' stroke='white' stroke-width='2.5' fill='none'/><path d='M15 16C12.7909 16 11 17.5 11 19.5C11 21.5 12.7909 23 15 23C17.5 23 19.5 19.5 20 19.5C20.5 19.5 22.5 23 25 23C27.2091 23 29 21.5 29 19.5C29 17.5 27.2091 16 25 16C22.5 16 20.5 19.5 20 19.5C19.5 19.5 17.5 16 15 16Z' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/><path d='M15 27.5 C17.5 29.5, 22.5 29.5, 25 27.5' stroke='white' stroke-width='2.2' stroke-linecap='round'/></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Ambient Glow Background -->
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo">
+                <svg class="brand-icon-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 28px; height: 28px;">
+                    <rect x="6" y="6" width="28" height="28" rx="6" stroke="white" stroke-width="2.5"/>
+                    <path d="M15 16C12.7909 16 11 17.5 11 19.5C11 21.5 12.7909 23 15 23C17.5 23 19.5 19.5 20 19.5C20.5 19.5 22.5 23 25 23C27.2091 23 29 21.5 29 19.5C29 17.5 27.2091 16 25 16C22.5 16 20.5 19.5 20 19.5C19.5 19.5 17.5 16 15 16Z" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 27.5 C17.5 29.5, 22.5 29.5, 25 27.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+                <span class="brand-name">99COMLABS<span class="brand-dot">.</span></span>
+            </a>
+            
+            <nav class="main-nav">
+                <a href="#about">About</a>
+            </nav>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-container">
+                <h1 class="hero-title">
+                    We engineer <span class="text-white">software</span>, <span class="text-gradient">hardware</span>, and <span class="text-white">cloud</span> at scale.
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Bridging silicon and cloud. From custom software platforms and embedded IoT controllers to high-availability cloud infrastructure and growth strategy.
+                </p>
+
+                <!-- Live Metrics Bar -->
+                <div class="hero-metrics">
+                    <div class="metric-item">
+                        <span class="metric-val">01</span>
+                        <span class="metric-label">Full-Stack Software</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <span class="metric-val">02</span>
+                        <span class="metric-label">Embedded PCB & IoT</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <span class="metric-val">03</span>
+                        <span class="metric-label">Cloud Infra & DevOps</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <span class="metric-val">04</span>
+                        <span class="metric-label">Digital Strategy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Capabilities Grid -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">ENGINEERING DOMAINS</span>
+                    <h2 class="section-title">Built for end-to-end technological execution</h2>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card">
+                        <div class="card-num">01</div>
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <h3 class="card-title">Custom Software & Web Engineering</h3>
+                        <p class="card-desc">Modern web applications, high-throughput APIs, custom client portals, and microservices crafted with speed and reliability.</p>
+                        <ul class="card-tags">
+                            <li>React / Next.js</li>
+                            <li>Node.js / Python</li>
+                            <li>Web Apps & APIs</li>
+                            <li>Custom Dashboards</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card">
+                        <div class="card-num">02</div>
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                        </div>
+                        <h3 class="card-title">Embedded Hardware & IoT Systems</h3>
+                        <p class="card-desc">End-to-end electronic engineering: PCB design, microcontroller firmware, interface modules, and smart sensor connectivity.</p>
+                        <ul class="card-tags">
+                            <li>PCB Design & Assembly</li>
+                            <li>Microcontroller Firmware</li>
+                            <li>IoT Sensors & Motors</li>
+                            <li>Interface Modules</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card">
+                        <div class="card-num">03</div>
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                        </div>
+                        <h3 class="card-title">Cloud Infrastructure & DevOps</h3>
+                        <p class="card-desc">High-performance hosting setups, containerized deployments, automated backups, and 24/7 disaster recovery systems.</p>
+                        <ul class="card-tags">
+                            <li>Cloud Hosting</li>
+                            <li>Docker / Kubernetes</li>
+                            <li>Disaster Recovery</li>
+                            <li>24/7 Monitoring</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card">
+                        <div class="card-num">04</div>
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </div>
+                        <h3 class="card-title">Digital Strategy & Web Portals</h3>
+                        <p class="card-desc">Targeted market research, high-converting digital portals, and strategic online positioning for modern businesses.</p>
+                        <ul class="card-tags">
+                            <li>Market Intelligence</li>
+                            <li>Conversion Optimization</li>
+                            <li>Search & Web Portals</li>
+                            <li>Brand Identity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ethos & Contact Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <span class="section-tag">THE LAB ETHOS</span>
+                        <h2 class="section-title">Built with precision. Engineered for reliability.</h2>
+                        <p class="about-text">
+                            At 99COMLABS, we believe modern digital solutions require deep technical integration. Whether designing high-speed printed circuit boards or architecting cloud microservices, we deliver robust, end-to-end engineering tailored for real-world impact.
+                        </p>
+                    </div>
+
+                    <div class="contact-box glass-panel">
+                        <h3>Contact for enquiries</h3>
+                        <p>Discuss your project scope directly with our team.</p>
+                        
+                        <div class="direct-list">
+                            <a href="mailto:connect@99comlabs.co.in" class="direct-link">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <span>connect@99comlabs.co.in</span>
+                            </a>
+                            <a href="https://wa.me/919745551513" target="_blank" class="direct-link">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                <span>+91 9745551513</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Slide-over Contact Drawer Modal -->
+    <div class="drawer-overlay" id="drawerOverlay">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h3>Initiate Project Inquiry</h3>
+                <button class="drawer-close" id="drawerClose">&times;</button>
+            </div>
+            
+            <form class="drawer-form" id="projectForm">
+                <div class="form-group">
+                    <label for="clientName">Your Name / Organization</label>
+                    <input type="text" id="clientName" required placeholder="e.g. John Doe / Acme Corp">
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientEmail">Email Address</label>
+                    <input type="email" id="clientEmail" required placeholder="name@domain.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="projectType">Service Requirement</label>
+                    <select id="projectType">
+                        <option value="Software Development">Full-Stack Software / Web App</option>
+                        <option value="Embedded Hardware / IoT">Embedded Hardware & PCB Design</option>
+                        <option value="Cloud Infrastructure">Cloud & Server Infrastructure</option>
+                        <option value="Complete Ecosystem">Complete Hardware + Software Ecosystem</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectDetails">Project Summary / Requirements</label>
+                    <textarea id="projectDetails" rows="4" placeholder="Briefly describe your objectives, key features, or hardware specs..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span>Send Message to Engineers</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Minimalist Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <span class="brand-name">99COMLABS.</span>
+                <span class="footer-copy">© 2026 99COMLABS. All rights reserved.</span>
+            </div>
+            <div class="footer-meta">
+                <span>IN-676304</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
