@@ -5,3 +5,5 @@ deployment:
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp styles.css $DEPLOYPATH
     - /bin/cp main.js $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/support
+    - /bin/cp -r support/* $DEPLOYPATH/support/
