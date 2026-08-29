@@ -1,15 +1,34 @@
 /**
  * 99COMLABS Support Portal Logic
- * Direct Ticket Dispatch to support@99comlabs.co.in & Interactive Knowledge Base
+ * Direct Ticket Dispatch to support@99comlabs.co.in
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initKnowledgeBase();
-    initSearch();
     initTicketForm();
     initModalControls();
-    initKeyboardShortcuts();
+    initScrollTop();
 });
+
+/* ==========================================================================
+   Floating iOS-Style Scroll to Top
+   ========================================================================== */
+function initScrollTop() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 280) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 /* ==========================================================================
    1. Dynamic Category Fast-Track
@@ -43,7 +62,7 @@ function prefillCategory(categoryName) {
 window.prefillCategory = prefillCategory;
 
 /* ==========================================================================
-   2. Knowledge Base Accordion & Filtering
+   2. Knowledge Base Accordion & Category Tabs
    ========================================================================== */
 function initKnowledgeBase() {
     const accordionItems = document.querySelectorAll('.kb-item');
@@ -57,7 +76,7 @@ function initKnowledgeBase() {
         trigger.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
             
-            // Close other accordions for clean UX
+            // Close other accordions
             accordionItems.forEach(other => {
                 if (other !== item) other.classList.remove('active');
             });
@@ -70,88 +89,27 @@ function initKnowledgeBase() {
         });
     });
 
-    // Filter Chips
+    // Category Filter Chips
     filterChips.forEach(chip => {
         chip.addEventListener('click', () => {
             filterChips.forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
 
             const filter = chip.dataset.filter;
-            const searchInput = document.getElementById('kbSearchInput');
-            if (searchInput) searchInput.value = ''; // Reset search on category change
-
-            filterAccordionItems(filter, '');
+            accordionItems.forEach(item => {
+                const itemCategory = item.dataset.category || '';
+                if (filter === 'all' || itemCategory === filter) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         });
     });
 }
 
-function filterAccordionItems(categoryFilter, searchQuery) {
-    const items = document.querySelectorAll('.kb-item');
-    const noResults = document.getElementById('noKbResults');
-    let visibleCount = 0;
-
-    const query = searchQuery.trim().toLowerCase();
-
-    items.forEach(item => {
-        const itemCategory = item.dataset.category || '';
-        const questionText = item.querySelector('.kb-question')?.textContent.toLowerCase() || '';
-        const contentText = item.querySelector('.kb-content')?.textContent.toLowerCase() || '';
-
-        const matchesCategory = (categoryFilter === 'all' || itemCategory === categoryFilter);
-        const matchesQuery = !query || questionText.includes(query) || contentText.includes(query);
-
-        if (matchesCategory && matchesQuery) {
-            item.style.display = 'block';
-            visibleCount++;
-        } else {
-            item.style.display = 'none';
-        }
-    });
-
-    if (noResults) {
-        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-    }
-}
-
 /* ==========================================================================
-   3. Real-time Search Input
-   ========================================================================== */
-function initSearch() {
-    const searchInput = document.getElementById('kbSearchInput');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value;
-        const activeChip = document.querySelector('.filter-chip.active');
-        const currentFilter = activeChip ? activeChip.dataset.filter : 'all';
-
-        filterAccordionItems(currentFilter, query);
-
-        // Auto scroll to FAQ if typing search
-        if (query.trim().length > 2) {
-            const faqSection = document.getElementById('faq');
-            if (faqSection && window.scrollY < faqSection.offsetTop - 300) {
-                // Keep smooth focus
-            }
-        }
-    });
-}
-
-function initKeyboardShortcuts() {
-    document.addEventListener('keydown', (e) => {
-        if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-            e.preventDefault();
-            const searchInput = document.getElementById('kbSearchInput');
-            if (searchInput) {
-                searchInput.focus();
-                searchInput.select();
-            }
-        }
-    });
-}
-
-/* ==========================================================================
-   4. Support Ticket Form Submission & Dispatch
+   3. Ticket ID Generator & Form Submission
    ========================================================================== */
 function generateTicketId() {
     const chars = '0123456789ABCDEF';
@@ -160,13 +118,6 @@ function generateTicketId() {
         code += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return `#99LAB-${code}`;
-}
-
-function getSlaEstimate(severityVal) {
-    if (severityVal.includes('P1')) return '< 2 Hours (24/7 Critical)';
-    if (severityVal.includes('P2')) return '< 6 Hours (High Priority)';
-    if (severityVal.includes('P3')) return '< 24 Hours (Standard)';
-    return '< 48 Hours (General)';
 }
 
 let lastTicketPayload = '';
@@ -207,14 +158,14 @@ function initTicketForm() {
             Phone_Number: clientPhone,
             Project_Reference: projectId,
             Engineering_Domain: domain,
-            Urgency_Severity: severity,
+            Priority_Level: severity,
             Subject: subject,
-            Detailed_Description: description,
+            Issue_Description: description,
             Submitted_At: new Date().toISOString()
         };
 
         // Construct formatted raw string for copy / mailto
-        lastTicketPayload = `=== 99COMLABS SUPPORT TICKET ===\nTicket ID: ${ticketId}\nClient: ${clientName} (${clientEmail})\nPhone: ${clientPhone}\nProject ID: ${projectId}\nDomain: ${domain}\nSeverity: ${severity}\nSubject: ${subject}\n\nDescription & Logs:\n${description}\n================================`;
+        lastTicketPayload = `=== 99COMLABS SUPPORT TICKET ===\nTicket ID: ${ticketId}\nClient: ${clientName} (${clientEmail})\nPhone: ${clientPhone}\nProject ID: ${projectId}\nDomain: ${domain}\nPriority: ${severity}\nSubject: ${subject}\n\nDescription:\n${description}\n================================`;
 
         // UI Loading State
         submitBtn.disabled = true;
@@ -222,8 +173,8 @@ function initTicketForm() {
         if (btnSpinner) btnSpinner.style.display = 'inline-flex';
 
         try {
-            // Send asynchronously via FormSubmit AJAX endpoint directly to support@99comlabs.co.in
-            const response = await fetch('https://formsubmit.co/ajax/support@99comlabs.co.in', {
+            // Send asynchronously via FormSubmit AJAX directly to support@99comlabs.co.in
+            await fetch('https://formsubmit.co/ajax/support@99comlabs.co.in', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -237,8 +188,7 @@ function initTicketForm() {
             form.reset();
 
         } catch (error) {
-            console.warn('FormSubmit AJAX fallback triggered:', error);
-            // Even if network blocks third-party CORS, show modal with prefilled mailto/whatsapp fallback
+            console.warn('Form submission fallback:', error);
             showTicketModal(ticketId, domain, severity, subject, clientName, clientEmail, description);
         } finally {
             submitBtn.disabled = false;
@@ -249,29 +199,27 @@ function initTicketForm() {
 }
 
 /* ==========================================================================
-   5. Confirmation Modal & Action Triggers
+   4. Confirmation Modal
    ========================================================================== */
 function showTicketModal(ticketId, domain, severity, subject, clientName, clientEmail, description) {
     const modal = document.getElementById('ticketSuccessModal');
     const modalTicketId = document.getElementById('modalTicketId');
     const modalDomainSev = document.getElementById('modalDomainSev');
-    const modalSlaTime = document.getElementById('modalSlaTime');
     const openMailtoBtn = document.getElementById('openMailtoBtn');
     const openWhatsAppBtn = document.getElementById('openWhatsAppBtn');
 
     if (modalTicketId) modalTicketId.textContent = ticketId;
-    if (modalDomainSev) modalDomainSev.textContent = `${domain} • ${severity.split(' ')[0]}`;
-    if (modalSlaTime) modalSlaTime.textContent = getSlaEstimate(severity);
+    if (modalDomainSev) modalDomainSev.textContent = `${domain} • ${severity}`;
 
     // Setup direct mailto client backup
     const mailSubject = encodeURIComponent(`[${ticketId}] ${subject} - ${clientName}`);
-    const mailBody = encodeURIComponent(`Support Ticket Reference: ${ticketId}\nClient: ${clientName} (${clientEmail})\nDomain: ${domain}\nSeverity: ${severity}\n\nIssue Description:\n${description}`);
+    const mailBody = encodeURIComponent(`Support Ticket Reference: ${ticketId}\nClient: ${clientName} (${clientEmail})\nDomain: ${domain}\nPriority: ${severity}\n\nIssue Description:\n${description}`);
     if (openMailtoBtn) {
         openMailtoBtn.href = `mailto:support@99comlabs.co.in?subject=${mailSubject}&body=${mailBody}`;
     }
 
-    // Setup direct WhatsApp escalation link
-    const waText = encodeURIComponent(`*99COMLABS Support Ticket [${ticketId}]*\n*Client:* ${clientName}\n*Domain:* ${domain}\n*Severity:* ${severity}\n*Subject:* ${subject}\n\n*Details:* ${description.substring(0, 300)}...`);
+    // Setup direct WhatsApp link
+    const waText = encodeURIComponent(`*99COMLABS Support Ticket [${ticketId}]*\n*Client:* ${clientName}\n*Domain:* ${domain}\n*Priority:* ${severity}\n*Subject:* ${subject}\n\n*Details:* ${description.substring(0, 300)}`);
     if (openWhatsAppBtn) {
         openWhatsAppBtn.href = `https://wa.me/919745551513?text=${waText}`;
     }
@@ -308,7 +256,7 @@ function initModalControls() {
                 navigator.clipboard.writeText(lastTicketPayload).then(() => {
                     if (copyBtnText) copyBtnText.textContent = 'Copied to Clipboard!';
                     setTimeout(() => {
-                        if (copyBtnText) copyBtnText.textContent = 'Copy Reference & Payload';
+                        if (copyBtnText) copyBtnText.textContent = 'Copy Ticket Reference';
                     }, 2500);
                 });
             }

@@ -220,37 +220,60 @@ a {
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
 }
 
-.main-nav a:not(.nav-cta-btn) {
-    font-size: 0.9rem;
+.main-nav a {
+    font-size: 0.92rem;
     color: var(--text-muted);
     font-weight: 500;
     transition: var(--transition-fast);
 }
 
-.main-nav a:not(.nav-cta-btn):hover {
+.main-nav a:hover {
     color: var(--text-white);
 }
 
-.nav-cta-btn {
-    padding: 8px 18px;
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--border-glass);
-    color: var(--text-white) !important;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: var(--transition-fast);
+/* Floating iOS-style Back to Top Button */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(18, 18, 22, 0.82);
+    border: 1px solid var(--border-glass-hover);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease;
+    z-index: 99;
 }
 
-.nav-cta-btn:hover {
-    background: var(--text-white);
-    color: var(--bg-void) !important;
+.scroll-top-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
-.mobile-menu-toggle { display: none; }
+.scroll-top-btn:hover {
+    background: rgba(30, 30, 38, 0.95);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px);
+}
+
+.scroll-top-btn:active {
+    transform: scale(0.92);
+}
 
 /* Hero Section */
 .hero-section {
@@ -834,8 +857,9 @@ a {
 }
 
 @media (max-width: 768px) {
-    .main-nav { display: none; }
+    .main-nav { display: flex; gap: 16px; }
     .hero-actions { flex-direction: column; width: 100%; }
     .hero-actions .btn { width: 100%; }
     .footer-container { flex-direction: column; gap: 16px; text-align: center; }
+    .scroll-top-btn { bottom: 20px; right: 20px; width: 40px; height: 40px; }
 }

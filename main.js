@@ -6,7 +6,28 @@ document.addEventListener('DOMContentLoaded', () => {
     initEstimatorTool();
     initDrawerModal();
     initFormSubmission();
+    initScrollTop();
 });
+
+/* ==========================================
+   Floating iOS-Style Scroll to Top
+   ========================================== */
+function initScrollTop() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 280) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 /* ==========================================
    1. Interactive Scope & Timeline Estimator

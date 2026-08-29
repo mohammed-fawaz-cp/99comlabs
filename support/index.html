@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support & Engineering Helpdesk — 99COMLABS</title>
-    <meta name="description" content="Official technical support, ticket submission desk, and engineering knowledge base for 99COMLABS clients and enterprise partners.">
+    <meta name="description" content="Technical support, project issue submission, and engineering desk for 99COMLABS clients.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,72 +35,24 @@
                 <span class="brand-name">99COMLABS<span class="brand-dot">.</span></span>
             </a>
             
-            <div class="header-badges">
-                <span class="portal-tag">ENGINEERING HELPDESK</span>
-            </div>
-
             <nav class="main-nav">
                 <a href="../index.html">Home</a>
-                <a href="../index.html#services">Capabilities</a>
-                <a href="#ticket-section" class="nav-cta-btn">Submit Ticket</a>
+                <a href="#faq">FAQ</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Clean Hero Section -->
         <section class="support-hero">
             <div class="container hero-container">
-                <div class="badge-pill">
-                    <span class="pulse-dot"></span>
-                    <span>24/7 TECHNICAL DESK &bull; DIRECT ROUTING</span>
-                </div>
-
                 <h1 class="hero-title">
                     How can our <span class="text-gradient">engineering team</span> assist you today?
                 </h1>
                 
                 <p class="hero-subtitle">
-                    Fast-track technical troubleshooting, submit project issue tickets, or escalate production alerts directly to <code>support@99comlabs.co.in</code>.
+                    Select a technical domain below to submit an issue, or reach our engineers directly at <code>support@99comlabs.co.in</code>.
                 </p>
-
-                <!-- Real-time Instant Search Bar -->
-                <div class="search-box-wrapper">
-                    <div class="search-box">
-                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <input type="text" id="kbSearchInput" placeholder="Search troubleshooting guides, error codes, OTA firmware, cloud DNS..." autocomplete="off">
-                        <span class="search-hint"><kbd>/</kbd></span>
-                    </div>
-                </div>
-
-                <!-- Live System Telemetry Status Bar -->
-                <div class="telemetry-bar glass-panel" id="telemetryBar">
-                    <div class="telemetry-item primary-status">
-                        <span class="status-indicator-dot online"></span>
-                        <div class="telemetry-text">
-                            <span class="telemetry-title">All Core Services Operational</span>
-                            <span class="telemetry-sub">Cloud Clusters, Telemetry & Firmware Gateways Active</span>
-                        </div>
-                    </div>
-                    <div class="telemetry-divider"></div>
-                    <div class="telemetry-metric">
-                        <span class="metric-label">UPTIME</span>
-                        <span class="metric-value">99.98%</span>
-                    </div>
-                    <div class="telemetry-divider"></div>
-                    <div class="telemetry-metric">
-                        <span class="metric-label">DISPATCH SLA</span>
-                        <span class="metric-value">&lt; 2h (P1)</span>
-                    </div>
-                    <div class="telemetry-divider"></div>
-                    <div class="telemetry-metric">
-                        <span class="metric-label">DIRECT DESK</span>
-                        <span class="metric-value code-font">support@99comlabs.co.in</span>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -108,16 +60,16 @@
         <section class="domains-section">
             <div class="container">
                 <div class="section-header text-center">
-                    <span class="section-tag">ENGINEERING PILLARS</span>
+                    <span class="section-tag">ENGINEERING DOMAINS</span>
                     <h2 class="section-title">Select your technical support domain</h2>
                 </div>
 
                 <div class="domain-cards-grid">
                     <!-- Domain 1: Custom Software -->
-                    <div class="domain-card glass-panel" data-domain="software" id="domainSoftwareCard">
+                    <div class="domain-card glass-panel" id="domainSoftwareCard">
                         <div class="domain-header">
                             <div class="domain-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <polyline points="16 18 22 12 16 6"></polyline>
                                     <polyline points="8 6 2 12 8 18"></polyline>
                                 </svg>
@@ -125,17 +77,17 @@
                             <span class="domain-badge">SOFTWARE</span>
                         </div>
                         <h3 class="domain-name">Web & Software Applications</h3>
-                        <p class="domain-desc">Frontend defects, backend API latency, database sync anomalies, and portal authentication.</p>
+                        <p class="domain-desc">Frontend defects, backend API latency, database sync anomalies, and user authentication.</p>
                         <button type="button" class="domain-action-btn" onclick="prefillCategory('Software & Web Applications')">
                             <span>Open Software Ticket</span> &rarr;
                         </button>
                     </div>
 
                     <!-- Domain 2: Embedded Hardware & IoT -->
-                    <div class="domain-card glass-panel" data-domain="hardware" id="domainHardwareCard">
+                    <div class="domain-card glass-panel" id="domainHardwareCard">
                         <div class="domain-header">
                             <div class="domain-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <rect x="4" y="4" width="16" height="16" rx="2"></rect>
                                     <rect x="9" y="9" width="6" height="6"></rect>
                                     <line x1="9" y1="1" x2="9" y2="4"></line>
@@ -158,10 +110,10 @@
                     </div>
 
                     <!-- Domain 3: Cloud Infrastructure -->
-                    <div class="domain-card glass-panel" data-domain="cloud" id="domainCloudCard">
+                    <div class="domain-card glass-panel" id="domainCloudCard">
                         <div class="domain-header">
                             <div class="domain-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
                                 </svg>
                             </div>
@@ -175,10 +127,10 @@
                     </div>
 
                     <!-- Domain 4: SLA & Maintenance -->
-                    <div class="domain-card glass-panel" data-domain="sla" id="domainSlaCard">
+                    <div class="domain-card glass-panel" id="domainSlaCard">
                         <div class="domain-header">
                             <div class="domain-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                 </svg>
                             </div>
@@ -198,59 +150,20 @@
         <section id="ticket-section" class="ticket-section">
             <div class="container">
                 <div class="ticket-grid">
-                    <!-- Left: Ticket Information & SLA Matrix -->
+                    <!-- Left: Direct Contacts & Escalation -->
                     <div class="ticket-info">
-                        <span class="section-tag">OFFICIAL SUPPORT DESK</span>
-                        <h2 class="ticket-heading">Submit an Engineering Ticket</h2>
+                        <span class="section-tag">SUPPORT DESK</span>
+                        <h2 class="ticket-heading">Submit a Support Ticket</h2>
                         <p class="ticket-subtext">
-                            Requests are automatically routed directly to our lead engineering inbox at <strong class="text-white">support@99comlabs.co.in</strong>. A unique tracking reference ID is assigned upon submission.
+                            Requests are automatically sent directly to our engineering inbox at <strong class="text-white">support@99comlabs.co.in</strong>. A unique tracking reference ID is assigned upon submission.
                         </p>
-
-                        <!-- SLA Response Tier Guide -->
-                        <div class="sla-card glass-panel">
-                            <h4 class="sla-heading">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span>Guaranteed SLA Response Matrix</span>
-                            </h4>
-                            
-                            <div class="sla-rows">
-                                <div class="sla-row">
-                                    <div class="sla-severity p1">
-                                        <span class="sev-dot"></span>
-                                        <strong>P1 Critical Outage</strong>
-                                    </div>
-                                    <span class="sla-time">&lt; 2 Hours (24/7)</span>
-                                </div>
-                                <div class="sla-row">
-                                    <div class="sla-severity p2">
-                                        <span class="sev-dot"></span>
-                                        <strong>P2 High Priority</strong>
-                                    </div>
-                                    <span class="sla-time">&lt; 6 Hours</span>
-                                </div>
-                                <div class="sla-row">
-                                    <div class="sla-severity p3">
-                                        <span class="sev-dot"></span>
-                                        <strong>P3 Standard / Normal</strong>
-                                    </div>
-                                    <span class="sla-time">&lt; 24 Hours</span>
-                                </div>
-                                <div class="sla-row">
-                                    <div class="sla-severity p4">
-                                        <span class="sev-dot"></span>
-                                        <strong>P4 General Inquiry</strong>
-                                    </div>
-                                    <span class="sla-time">&lt; 48 Hours</span>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Direct Contacts Box -->
                         <div class="escalation-box glass-panel">
                             <h4>Direct Escalation Channels</h4>
                             <div class="escalation-links">
                                 <a href="mailto:support@99comlabs.co.in" class="esc-link">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     <div>
                                         <span class="esc-title">support@99comlabs.co.in</span>
                                         <span class="esc-sub">Engineering Support Desk</span>
@@ -258,17 +171,17 @@
                                 </a>
 
                                 <a href="https://wa.me/919745551513?text=Hi%2099COMLABS%20Support,%20I%20have%20an%20urgent%20engineering%20inquiry" target="_blank" class="esc-link">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                                     <div>
                                         <span class="esc-title">+91 9745551513</span>
-                                        <span class="esc-sub">WhatsApp Hotline / Urgent Incident</span>
+                                        <span class="esc-sub">WhatsApp Support / Urgent Desk</span>
                                     </div>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right: Interactive Form Desk -->
+                    <!-- Right: Clean Form Desk -->
                     <div class="ticket-form-card glass-panel">
                         <form id="supportTicketForm" class="support-form" action="https://formsubmit.co/support@99comlabs.co.in" method="POST">
                             <!-- Hidden config fields for FormSubmit endpoint -->
@@ -276,7 +189,6 @@
                             <input type="hidden" name="_template" value="table">
                             <input type="hidden" id="ticketIdHidden" name="Ticket_ID" value="">
                             <input type="hidden" id="formSubjectHidden" name="_subject" value="[99COMLABS Support] New Ticket Submitted">
-                            <input type="hidden" name="_autoresponse" value="Thank you for contacting 99COMLABS Engineering Support. We have received your ticket and our team is reviewing it according to your SLA tier.">
                             
                             <div class="form-row">
                                 <div class="form-group">
@@ -295,8 +207,8 @@
                                     <input type="tel" id="clientPhone" name="Phone_Number" placeholder="+91 98765 43210">
                                 </div>
                                 <div class="form-group">
-                                    <label for="projectId">Project ID / Contract Reference</label>
-                                    <input type="text" id="projectId" name="Project_Reference" placeholder="e.g. LAB-2026-X or Client Portal ID">
+                                    <label for="projectId">Project ID / Reference (Optional)</label>
+                                    <input type="text" id="projectId" name="Project_Reference" placeholder="e.g. LAB-2026-X or App Name">
                                 </div>
                             </div>
 
@@ -312,171 +224,147 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="severityLevel">Urgency / Severity Level <span class="required">*</span></label>
+                                    <label for="severityLevel">Priority Level <span class="required">*</span></label>
                                     <select id="severityLevel" name="Urgency_Severity" required>
-                                        <option value="P3 - Standard (Normal, within 24 hrs)" selected>P3 - Standard (&lt; 24h SLA)</option>
-                                        <option value="P1 - Critical (System Down, < 2h)">P1 - Critical Outage (&lt; 2h SLA)</option>
-                                        <option value="P2 - High Priority (Degraded, < 6h)">P2 - High Priority (&lt; 6h SLA)</option>
-                                        <option value="P4 - General Inquiry (< 48h)">P4 - General Inquiry (&lt; 48h SLA)</option>
+                                        <option value="Standard / Normal" selected>Standard / Normal</option>
+                                        <option value="High Priority">High Priority</option>
+                                        <option value="P1 - Critical Outage">P1 - Critical Outage</option>
+                                        <option value="General Inquiry">General Inquiry</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="ticketSubject">Ticket Subject / Summary <span class="required">*</span></label>
-                                <input type="text" id="ticketSubject" name="Subject" required placeholder="Brief summary of the issue (e.g. API 502 Bad Gateway during load spike)">
+                                <label for="ticketSubject">Subject <span class="required">*</span></label>
+                                <input type="text" id="ticketSubject" name="Subject" required placeholder="Brief summary of the issue">
                             </div>
 
                             <div class="form-group">
-                                <label for="ticketDescription">Issue Description, Environment & Logs <span class="required">*</span></label>
-                                <textarea id="ticketDescription" name="Detailed_Description" rows="5" required placeholder="Please provide detailed steps to reproduce, device model, firmware version, server OS, stack trace, or error logs..."></textarea>
+                                <label for="ticketDescription">Issue Description & Details <span class="required">*</span></label>
+                                <textarea id="ticketDescription" name="Detailed_Description" rows="4" required placeholder="Describe the issue, steps to reproduce, or error message..."></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-full submit-btn" id="submitTicketBtn">
-                                <span class="btn-text">Transmit Ticket to support@99comlabs.co.in</span>
+                                <span class="btn-text">Submit Ticket</span>
                                 <span class="btn-spinner" style="display: none;">
                                     <svg class="spinner-svg" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" stroke-dasharray="32" stroke-linecap="round"></circle></svg>
-                                    Transmitting...
+                                    Submitting...
                                 </span>
                             </button>
-
-                            <p class="form-disclaimer">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                <span>All diagnostic logs and telemetry submitted are protected by 99COMLABS NDA & Security Protocols.</span>
-                            </p>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Searchable Knowledge Base & Troubleshooting FAQ -->
+        <!-- Frequently Asked Questions -->
         <section class="kb-section" id="faq">
             <div class="container">
                 <div class="section-header text-center">
-                    <span class="section-tag">KNOWLEDGE BASE & SELF-SERVICE</span>
-                    <h2 class="section-title">Common Engineering Solutions & Troubleshooting</h2>
-                    <p class="section-subtitle">Browse frequently encountered technical inquiries or search above.</p>
+                    <span class="section-tag">FAQ & TROUBLESHOOTING</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
                 </div>
 
-                <!-- KB Filter Chips -->
+                <!-- Category Filters -->
                 <div class="kb-filters">
-                    <button class="filter-chip active" data-filter="all">All Solutions</button>
-                    <button class="filter-chip" data-filter="software">Software & APIs</button>
-                    <button class="filter-chip" data-filter="hardware">Hardware & PCB</button>
-                    <button class="filter-chip" data-filter="cloud">Cloud & DevOps</button>
-                    <button class="filter-chip" data-filter="contracts">Contracts & SLA</button>
+                    <button class="filter-chip active" data-filter="all">All</button>
+                    <button class="filter-chip" data-filter="software">Software</button>
+                    <button class="filter-chip" data-filter="hardware">Hardware</button>
+                    <button class="filter-chip" data-filter="cloud">Cloud</button>
+                    <button class="filter-chip" data-filter="contracts">Maintenance</button>
                 </div>
 
                 <div class="kb-accordion-grid" id="kbAccordionList">
                     <!-- Software 1 -->
                     <div class="kb-item glass-panel" data-category="software">
                         <button class="kb-trigger">
-                            <span class="kb-cat-tag software">SOFTWARE</span>
-                            <span class="kb-question">How do I resolve CORS or 401 Unauthorized errors on 99COMLABS custom APIs?</span>
+                            <span class="kb-question">How do I resolve CORS or 401 Unauthorized errors on custom APIs?</span>
                             <span class="kb-arrow">&darr;</span>
                         </button>
                         <div class="kb-content">
-                            <p>Verify that your client origin domain is whitelisted in your project's <code>ALLOWED_ORIGINS</code> configuration environment variables. For token authentication, verify that the <code>Authorization: Bearer &lt;API_KEY&gt;</code> header is passed without formatting whitespace. If key rotation was recently triggered, generate fresh credentials via your client dashboard.</p>
+                            <p>Verify that your client domain is whitelisted in your project's <code>ALLOWED_ORIGINS</code> environment variables. For token authentication, verify that the <code>Authorization: Bearer &lt;API_KEY&gt;</code> header is passed cleanly without extra whitespace.</p>
                         </div>
                     </div>
 
                     <!-- Software 2 -->
                     <div class="kb-item glass-panel" data-category="software">
                         <button class="kb-trigger">
-                            <span class="kb-cat-tag software">SOFTWARE</span>
-                            <span class="kb-question">What is the standard procedure for requesting new features or schema alterations?</span>
+                            <span class="kb-question">How can I request new features or schema alterations?</span>
                             <span class="kb-arrow">&darr;</span>
                         </button>
                         <div class="kb-content">
-                            <p>Submit a ticket choosing <strong>"Service Agreement & Maintenance"</strong> or <strong>"Custom Software"</strong> with severity <strong>P4 / General</strong>. Our solution architect will schedule an architectural scope review within 48 hours to evaluate database migration plans and sprint milestones.</p>
+                            <p>Submit a ticket choosing <strong>"Service Agreement & Maintenance"</strong> or <strong>"Custom Software"</strong>. Our lead architect will review your scope and follow up with an implementation plan.</p>
                         </div>
                     </div>
 
                     <!-- Hardware 1 -->
                     <div class="kb-item glass-panel" data-category="hardware">
                         <button class="kb-trigger">
-                            <span class="kb-cat-tag hardware">HARDWARE</span>
-                            <span class="kb-question">How to recover an IoT device stuck during Over-the-Air (OTA) firmware flash?</span>
+                            <span class="kb-question">How do I recover an IoT controller after a failed firmware flash?</span>
                             <span class="kb-arrow">&darr;</span>
                         </button>
                         <div class="kb-content">
-                            <p>99COMLABS microcontroller hardware utilizes a dual-bank flash partition with automatic rollback. If a partition checksum fails during an OTA update:
-                            <br>&bull; Power-cycle the controller board (hold the hardware reset pin for 3 seconds).
-                            <br>&bull; The device will automatically boot into the Golden Fallback image and broadcast a diagnostics beacon on UART 115200 baud.
-                            <br>&bull; Submit a P2 ticket with device MAC / IMEI if telemetry fails to reconnect.</p>
+                            <p>99COMLABS microcontroller hardware utilizes dual-bank flash partition with automatic rollback. Power-cycle the controller board (hold hardware reset for 3 seconds) to boot into the golden fallback image. If issues persist, open a ticket with the device MAC/IMEI.</p>
                         </div>
                     </div>
 
                     <!-- Hardware 2 -->
                     <div class="kb-item glass-panel" data-category="hardware">
                         <button class="kb-trigger">
-                            <span class="kb-cat-tag hardware">HARDWARE</span>
-                            <span class="kb-question">Where can I download updated PCB Gerber schematics and Bill of Materials (BOM)?</span>
+                            <span class="kb-question">Where can I obtain PCB Gerber schematics and Bill of Materials (BOM)?</span>
                             <span class="kb-arrow">&darr;</span>
                         </button>
                         <div class="kb-content">
-                            <p>All production Gerber revisions (RS-274X), pick-and-place files, and component sourcing matrices are archived in your private client repository. If you require signed manufacturing packages or certified stencil files, request them through this support portal.</p>
+                            <p>All production Gerber revisions (RS-274X) and sourcing matrices are archived in your private client repository. You can request copies anytime through this portal.</p>
                         </div>
                     </div>
 
                     <!-- Cloud 1 -->
                     <div class="kb-item glass-panel" data-category="cloud">
                         <button class="kb-trigger">
-                            <span class="kb-cat-tag cloud">CLOUD & DEVOPS</span>
-                            <span class="kb-question">What should I do if our SSL certificate has expired or displays a security warning?</span>
+                            <span class="kb-question">What should I do if our SSL certificate has expired or shows a security warning?</span>
                             <span class="kb-arrow">&darr;</span>
                         </button>
                         <div class="kb-content">
-                            <p>Our managed hosting configurations include automated Let's Encrypt / Cloudflare Edge SSL rotation. If an external DNS change prevented automatic challenge verification, submit a <strong>P1/P2 ticket</strong> immediately. Our DevOps engineer will perform zero-downtime certificate renewal and verify ACME validation records.</p>
+                            <p>Our managed hosting configurations include automated Let's Encrypt / Cloudflare SSL renewal. If an external DNS change blocked renewal, submit a ticket and our DevOps engineer will immediately trigger manual challenge validation.</p>
                         </div>
                     </div>
 
                     <!-- Cloud 2 -->
                     <div class="kb-item glass-panel" data-category="cloud">
                         <button class="kb-trigger">
-                            <span class="kb-cat-tag cloud">CLOUD & DEVOPS</span>
-                            <span class="kb-question">How are database backups scheduled and how do I request a point-in-time restore?</span>
+                            <span class="kb-question">How do I request a database point-in-time restore from backups?</span>
                             <span class="kb-arrow">&darr;</span>
                         </button>
                         <div class="kb-content">
-                            <p>Production databases are backed up automatically with incremental snapshots every 6 hours and full daily offsite replication. In the event of catastrophic data corruption, request a Point-in-Time Recovery (PITR) by providing the target UTC timestamp in a P1 critical ticket.</p>
+                            <p>Production databases are backed up with snapshots every 6 hours and full daily offsite replication. In an emergency, submit a ticket with the desired recovery timestamp.</p>
                         </div>
                     </div>
 
                     <!-- Contracts 1 -->
                     <div class="kb-item glass-panel" data-category="contracts">
                         <button class="kb-trigger">
-                            <span class="kb-cat-tag contracts">SLA & BILLING</span>
-                            <span class="kb-question">What is included in the 99COMLABS standard technical warranty and maintenance?</span>
+                            <span class="kb-question">What is included in the 99COMLABS standard technical maintenance?</span>
                             <span class="kb-arrow">&darr;</span>
                         </button>
                         <div class="kb-content">
-                            <p>All delivered hardware and software systems include a standard post-delivery warranty covering critical bug remediation, security patches, and cloud uptime monitoring. Extended 24/7 SLA contracts provide dedicated on-call engineers, sub-2-hour response guarantees, and proactive firmware health audits.</p>
+                            <p>All delivered systems include warranty covering critical bug fixes, security updates, and cloud monitoring. Extended agreements provide dedicated on-call support and proactive maintenance.</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- No Results State -->
-                <div class="no-results" id="noKbResults" style="display: none;">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-                    <h3>No matching technical articles found</h3>
-                    <p>Can't find what you are looking for? Transmit your query directly to our engineers via the ticket desk above.</p>
-                    <a href="#ticket-section" class="btn btn-secondary">Submit Ticket Directly</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Ticket Confirmation Modal -->
+    <!-- Clean Confirmation Modal -->
     <div class="modal-overlay" id="ticketSuccessModal">
         <div class="modal-card glass-panel">
             <div class="modal-header">
                 <div class="success-icon-badge">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <h3>Ticket Transmitted Successfully</h3>
-                <p>Your engineering support request has been logged and dispatched to <code>support@99comlabs.co.in</code>.</p>
+                <h3>Ticket Submitted Successfully</h3>
+                <p>Your support request has been dispatched to <code>support@99comlabs.co.in</code>.</p>
             </div>
 
             <div class="modal-body">
@@ -486,29 +374,25 @@
                         <span class="summary-val code-font" id="modalTicketId">#99LAB-XXXXX</span>
                     </div>
                     <div class="summary-item">
-                        <span class="summary-label">DOMAIN / SEVERITY:</span>
+                        <span class="summary-label">DOMAIN / PRIORITY:</span>
                         <span class="summary-val" id="modalDomainSev">Software &bull; Normal</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">ESTIMATED SLA RESPONSE:</span>
-                        <span class="summary-val text-white" id="modalSlaTime">&lt; 24 Hours</span>
                     </div>
                 </div>
 
                 <div class="modal-actions">
                     <button class="btn btn-secondary btn-full" id="copyTicketBtn">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        <span id="copyBtnText">Copy Reference & Payload</span>
+                        <span id="copyBtnText">Copy Ticket Reference</span>
                     </button>
 
                     <a href="#" class="btn btn-primary btn-full" id="openMailtoBtn">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        <span>Send via Email Client</span>
+                        <span>Open in Email Client</span>
                     </a>
 
                     <a href="#" class="btn btn-whatsapp btn-full" id="openWhatsAppBtn" target="_blank">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        <span>Escalate to WhatsApp Hotline</span>
+                        <span>Contact via WhatsApp</span>
                     </a>
                 </div>
             </div>
@@ -533,6 +417,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating iOS-style Back to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </button>
 
     <!-- Scripts -->
     <script src="support.js"></script>
