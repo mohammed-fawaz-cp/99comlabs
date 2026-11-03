@@ -1,0 +1,373 @@
+---
+// src/pages/projects.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Engineering Projects & Case Studies";
+const pageDescription = "Explore authentic engineering projects from 99COMLABS in Kerala: enterprise billing POS, industrial IoT smart motor automation, and cross-platform PDF suites.";
+const breadcrumbs = [{ name: 'Projects', url: '/projects/' }];
+
+const projects = [
+  {
+    id: 'billing-app',
+    title: 'Enterprise Billing Application',
+    subheadline: 'High-Reliability POS & Delivery Settlement Platform',
+    category: 'software',
+    categoryLabel: 'Enterprise Software',
+    badge: 'Active Deployment',
+    verbatimDesc: 'Cross-platform POS & settlement platform engineered with an offline-first SQLite database, real-time MongoDB cloud synchronization, delivery settlement module, and automated financial report generation.',
+    problem: 'Retailers, wholesalers, and multi-counter stores face severe revenue loss when internet connectivity fails during peak hours. Cloud-only POS systems freeze, halting checkout lines, delaying delivery fleets, and throwing end-of-day cash reconciliation into chaos.',
+    solution: 'We engineered an offline-first desktop application combining an Electron container and Next.js interface with an embedded SQLite database. Cashiers execute sub-millisecond checkout transactions without internet connectivity. When the connection resumes, a background Node.js sync engine bi-directionally synchronizes transactions with a central MongoDB cloud cluster with automated conflict resolution.',
+    highlights: [
+      'Zero-latency offline checkout powered by local ACID-compliant SQLite storage.',
+      'Background cloud synchronization with MongoDB when internet connectivity resumes.',
+      'Delivery settlement module tracking driver routes, cash collection, and credit disbursements.',
+      'One-click automated financial reporting, GST tax summaries, and thermal receipt printing.'
+    ],
+    techStack: ['Electron', 'Next.js', 'SQLite', 'MongoDB', 'Node.js', 'Offline-First'],
+    schematic: 'Counter POS ──► Local SQLite (ACID) ──► Background Sync ──► Cloud MongoDB Cluster'
+  },
+  {
+    id: 'industrial-iot',
+    title: 'Life & Tree — Industrial IoT Smart Motor Automation',
+    subheadline: 'Real-Time Remote Telemetry & Fail-Safe Machine Control',
+    category: 'iot',
+    categoryLabel: 'Industrial IoT & Hardware',
+    badge: 'Embedded System',
+    verbatimDesc: 'Industrial IoT hardware automation platform featuring real-time MQTT telemetry, interactive hardware TUI device simulator, REST API backend, NGINX reverse proxy, and multi-tier admin control panel.',
+    problem: 'Commercial agriculture, water utilities, and industrial processing units suffer costly motor coil burnouts caused by voltage fluctuations, phase loss, and dry running. Unattended pump stations require continuous manual inspection, causing high labor costs and equipment failures.',
+    solution: 'We developed an end-to-end IoT automation platform combining custom edge microcontrollers, Embedded C/Python firmware, and an edge protective cutoff mechanism. Edge sensors sample current, voltage, flow rates, and temperatures in real time. Sensor data is published over cellular networks using lightweight MQTT through an NGINX reverse proxy to a Node.js backend and real-time administrative dashboard.',
+    highlights: [
+      'Autonomous edge protection logic cutting power in milliseconds during voltage surges or dry runs.',
+      'Low-bandwidth MQTT messaging engineered for rural cellular networks (2G/4G).',
+      'Hardened NGINX reverse proxy handling SSL termination and high-concurrency connections.',
+      'Multi-tier admin dashboard with live gauges, operational audit trails, and automated WhatsApp alerts.'
+    ],
+    techStack: ['MQTT Protocol', 'Embedded C', 'Python', 'Node.js', 'NGINX', 'REST APIs'],
+    schematic: 'Edge Sensors & Motors ──► Microcontroller (C/Python) ──► MQTT over 4G ──► NGINX ──► Node.js Telemetry'
+  },
+  {
+    id: 'mypdf-suite',
+    title: 'MyPDF — Cross-Platform Document Processing Suite',
+    subheadline: '100% On-Device Offline Document Security Suite',
+    category: 'mobile',
+    categoryLabel: 'Mobile & Utilities',
+    badge: 'Cross-Platform',
+    verbatimDesc: 'Modern cross-platform document processing application engineered for offline PDF manipulation: merging, splitting, compressing, rendering, and custom document manipulation.',
+    problem: 'Businesses, lawyers, and healthcare providers frequently need to merge, compress, or split sensitive PDF documents. Uploading confidential client records, tax forms, or contracts to free web converters exposes businesses to severe data leaks and privacy violations.',
+    solution: 'We engineered a cross-platform document utility built with Flutter and Dart. Utilizing Riverpod for reactive state management and a custom compiled local PDF processing engine, every file operation executes entirely in device memory. Zero bytes of sensitive document data ever leave the user’s device.',
+    highlights: [
+      '100% on-device execution guaranteeing total data confidentiality without cloud upload risks.',
+      'Sub-second PDF merging, splitting, lossless compression, watermark application, and page sorting.',
+      'Reactive state architecture powered by Riverpod delivering smooth 60fps document previews.',
+      'Single maintainable codebase deploying natively to Android, iOS, and desktop environments.'
+    ],
+    techStack: ['Flutter', 'Dart', 'Riverpod', 'PDF Engine', 'Offline-First', 'Cross-Platform'],
+    schematic: 'Local Document File ──► Flutter/Riverpod UI ──► In-Memory PDF Engine ──► Local Output File'
+  }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs}>
+  <!-- JSON-LD Structured Data: BreadcrumbList & CollectionPage -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://99comlabs.co.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://99comlabs.co.in/projects/"
+          }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Engineering Projects & Selected Works — 99COMLABS",
+        "description": pageDescription,
+        "url": "https://99comlabs.co.in/projects/",
+        "hasPart": projects.map((p) => ({
+          "@type": "SoftwareApplication",
+          "name": p.title,
+          "description": p.verbatimDesc,
+          "applicationCategory": p.categoryLabel,
+          "operatingSystem": "Cross-Platform"
+        }))
+      }
+    ]
+  })} />
+
+  <!-- Hero Section -->
+  <section class="py-14 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-xs font-semibold text-brand-700 mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          Verified Case Studies • Active Engineering
+        </div>
+
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary mb-6 leading-tight">
+          Engineering Projects & Selected Works
+        </h1>
+
+        <p class="text-base sm:text-lg text-content-secondary leading-relaxed mb-6">
+          Explore authentic engineering solutions built by 99COMLABS. From offline-first enterprise retail systems and remote industrial IoT automation to secure cross-platform mobile utilities—engineered for reliability and performance.
+        </p>
+
+        <div class="flex items-center gap-4 text-xs text-content-muted">
+          <span>✓ 100% Verified Codebases</span>
+          <span>•</span>
+          <span>✓ Zero Fabricated Metrics</span>
+          <span>•</span>
+          <span>✓ Proven in Production</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Category Filter Section -->
+  <section class="py-12 bg-surface-muted border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Filter Bar -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+        <div>
+          <h2 class="font-heading text-xl font-bold text-content-primary">
+            Filter Case Studies by Discipline
+          </h2>
+          <p class="text-xs sm:text-sm text-content-muted mt-1">
+            Select a domain to inspect relevant engineering architectures.
+          </p>
+        </div>
+
+        <!-- Accessible Filter Buttons (min-h-touch >= 44px) -->
+        <div class="flex flex-wrap items-center gap-2 bg-surface-card p-1.5 rounded-xl border border-line-light shadow-sm" role="tablist" aria-label="Project Categories">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            data-filter="all"
+            class="filter-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center bg-brand-700 text-white shadow-sm focus-visible:ring-4 focus-visible:ring-brand-400"
+          >
+            All Projects (3)
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-filter="software"
+            class="filter-tab px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center text-content-secondary hover:text-brand-700 hover:bg-surface-subtle focus-visible:ring-4 focus-visible:ring-brand-400"
+          >
+            Software (1)
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-filter="iot"
+            class="filter-tab px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center text-content-secondary hover:text-brand-700 hover:bg-surface-subtle focus-visible:ring-4 focus-visible:ring-brand-400"
+          >
+            IoT Hardware (1)
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-filter="mobile"
+            class="filter-tab px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center text-content-secondary hover:text-brand-700 hover:bg-surface-subtle focus-visible:ring-4 focus-visible:ring-brand-400"
+          >
+            Mobile (1)
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid (Static Default with Progressive Enhancement) -->
+      <div id="projects-grid" class="space-y-12">
+        {projects.map((project) => (
+          <article
+            id={project.id}
+            data-category={project.category}
+            class="project-card bg-surface-card rounded-2xl border border-line-light p-6 sm:p-8 lg:p-10 shadow-card hover:shadow-card-hover transition-all duration-200"
+          >
+            <!-- Card Header Meta -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-line-light">
+              <div class="flex items-center gap-2.5">
+                <span class="px-3 py-1 rounded-md text-xs font-mono font-semibold uppercase tracking-wider bg-brand-50 text-brand-700 border border-brand-200">
+                  {project.categoryLabel}
+                </span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  {project.badge}
+                </span>
+              </div>
+              <span class="text-xs text-content-muted font-mono">
+                Verified System Artifact
+              </span>
+            </div>
+
+            <!-- Title & Lead -->
+            <div class="max-w-4xl mb-8">
+              <h3 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-2">
+                {project.title}
+              </h3>
+              <p class="text-base sm:text-lg font-medium text-brand-700 mb-4">
+                {project.subheadline}
+              </p>
+              <blockquote class="bg-surface-subtle p-4 rounded-xl border-l-4 border-brand-600 text-sm font-mono text-content-secondary italic">
+                "{project.verbatimDesc}"
+              </blockquote>
+            </div>
+
+            <!-- Two-Column Problem & Solution Architecture -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              <div class="bg-surface-muted p-6 rounded-xl border border-line-light">
+                <h4 class="font-heading text-base font-bold text-content-primary mb-3 flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500" aria-hidden="true"></span>
+                  The Operational Challenge
+                </h4>
+                <p class="text-sm text-content-secondary leading-relaxed">
+                  {project.problem}
+                </p>
+              </div>
+
+              <div class="bg-surface-muted p-6 rounded-xl border border-line-light">
+                <h4 class="font-heading text-base font-bold text-content-primary mb-3 flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+                  The 99COMLABS Engineering Solution
+                </h4>
+                <p class="text-sm text-content-secondary leading-relaxed">
+                  {project.solution}
+                </p>
+              </div>
+            </div>
+
+            <!-- Architectural Highlights -->
+            <div class="mb-8">
+              <h4 class="font-heading text-sm font-bold uppercase tracking-wider text-content-muted mb-4">
+                Key Engineering Deliverables & Architecture
+              </h4>
+              <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-content-secondary">
+                {project.highlights.map((item) => (
+                  <li class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-subtle border border-line-light">
+                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Schematic Diagram Block -->
+            <div class="mb-8 bg-surface-dark text-slate-200 p-5 rounded-xl border border-line-dark font-mono text-xs overflow-x-auto">
+              <span class="block text-slate-400 font-bold uppercase tracking-wider mb-2 text-[11px]">
+                Data & Control Pipeline Architecture
+              </span>
+              <code>{project.schematic}</code>
+            </div>
+
+            <!-- Tech Stack Badges -->
+            <div>
+              <h4 class="font-heading text-xs font-bold uppercase tracking-wider text-content-muted mb-3">
+                Technologies & Protocols Employed
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                {project.techStack.map((tech) => (
+                  <span class="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-surface-muted text-content-primary border border-line-medium">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Project Inquiry Conversion Section -->
+  <section class="py-16 sm:py-20 bg-surface-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900 text-white rounded-3xl p-8 sm:p-12 lg:p-16 shadow-xl relative overflow-hidden">
+        <div class="max-w-2xl relative z-10 space-y-6">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-700/60 border border-brand-500 text-xs font-semibold text-brand-100">
+            Have a Complex Engineering Requirement?
+          </span>
+
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            Let's architect your custom software, IoT, or cloud project.
+          </h2>
+
+          <p class="text-base sm:text-lg text-brand-100 leading-relaxed">
+            Whether you need an offline-first desktop platform, custom IoT sensor hardware, or a secure cross-platform mobile application, our engineers in Kerala deliver production-grade code with 100% ownership.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <a
+              href="/contact/"
+              class="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-brand-950 bg-white hover:bg-brand-50 rounded-lg shadow-sm hover:shadow transition-all duration-150 min-h-touch focus-visible:ring-4 focus-visible:ring-white"
+            >
+              Get a Free Project Quote
+            </a>
+
+            <a
+              href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20reviewed%20your%20projects%20and%20would%20like%20to%20discuss%20a%20new%20engineering%20initiative."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors min-h-touch focus-visible:ring-4 focus-visible:ring-emerald-400"
+            >
+              <span>Chat on WhatsApp (+91 9745551513)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- Zero-Dependency Accessible Tab Filtering Script -->
+<script is:inline>
+  (function () {
+    const tabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.project-card');
+
+    if (!tabs.length || !cards.length) return;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', function () {
+        const filter = this.getAttribute('data-filter');
+
+        // Update active tab visual & ARIA states
+        tabs.forEach((t) => {
+          const isCurrent = t === tab;
+          t.setAttribute('aria-selected', String(isCurrent));
+          if (isCurrent) {
+            t.classList.add('bg-brand-700', 'text-white', 'shadow-sm');
+            t.classList.remove('text-content-secondary', 'hover:bg-surface-subtle');
+          } else {
+            t.classList.remove('bg-brand-700', 'text-white', 'shadow-sm');
+            t.classList.add('text-content-secondary', 'hover:bg-surface-subtle');
+          }
+        });
+
+        // Filter project cards
+        cards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  })();
+</script>

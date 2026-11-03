@@ -1,0 +1,673 @@
+---
+/**
+ * ContactForm.astro — Accessible On-Page Contact & Quote Inquiry Form
+ * 
+ * Part of 99COMLABS Milestone 3 (Conversion Engine, SEO & Documentation)
+ * Features:
+ * 1. Required fields: Full Name, Email, Phone, Service Domain, Requirements (min 15 chars).
+ * 2. Optional field: Budget Range.
+ * 3. Spam protection: Honeypot field `_gotcha` (visually & screen-reader hidden via offscreen CSS).
+ * 4. Accessible inline validation: aria-invalid, aria-describedby, focus-visible outlines, touch targets >= 44px.
+ * 5. Dynamic submission states: client-side AJAX submission with loading spinner, disabled states,
+ *    success state ("Thank you! Your inquiry has been received. Our team in Kerala will contact you within 24 business hours."),
+ *    and fallback error banner with phone/WhatsApp escape hatches.
+ * 6. Configurable backend endpoint: FormSubmit.co AJAX default or custom webhook/API URL with placeholder.
+ * 7. GA4 telemetry event hook: dispatches `generate_lead` on successful submission.
+ */
+
+export interface Props {
+  /**
+   * Action URL / API endpoint for form submission.
+   * Default: FormSubmit.co AJAX endpoint pointing to official inquiry email.
+   * Placeholder for website owner: [ADD FORM BACKEND KEY / ENDPOINT]
+   */
+  endpoint?: string;
+  /**
+   * Optional custom CSS class name for outer container.
+   */
+  class?: string;
+  /**
+   * Optional custom form ID.
+   */
+  id?: string;
+}
+
+const {
+  endpoint = 'https://formsubmit.co/ajax/connect@99comlabs.co.in',
+  class: className = '',
+  id = 'contact-inquiry-form'
+} = Astro.props;
+---
+
+<div class={`w-full ${className}`}>
+  <!-- Submission Success State Container (Hidden by default, shown on successful submission) -->
+  <div
+    id="form-success-container"
+    class="hidden rounded-2xl border-2 border-emerald-500/30 bg-emerald-50/80 p-6 sm:p-10 text-center transition-all duration-300 shadow-card"
+    role="status"
+    aria-live="polite"
+    tabindex="-1"
+  >
+    <div class="mx-auto w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 mb-6 shadow-sm">
+      <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+
+    <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-3">
+      Inquiry Received!
+    </h2>
+
+    <p class="text-base sm:text-lg text-content-secondary max-w-lg mx-auto mb-6 leading-relaxed">
+      Thank you! Your inquiry has been received. Our team in Kerala will contact you within 24 business hours.
+    </p>
+
+    <div class="p-4 rounded-xl bg-white/80 border border-emerald-200/60 max-w-md mx-auto mb-8 text-sm text-content-muted text-left space-y-2">
+      <div class="flex items-center gap-2 text-content-primary font-semibold">
+        <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>What to expect next:</span>
+      </div>
+      <p class="text-xs sm:text-sm pl-6">
+        A senior engineer will review your technical specifications, verify architectural feasibility, and prepare a preliminary scope outline before reaching out.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20just%20submitted%20the%20contact%20form%20and%20would%20like%20to%20follow%20up."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-whatsapp-hover hover:bg-whatsapp-base rounded-lg transition-colors min-h-touch shadow-sm focus-visible:ring-4 focus-visible:ring-whatsapp-bright"
+      >
+        <svg class="w-5 h-5 text-whatsapp-bright fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.312l-.727 2.654 2.721-.713c.978.534 1.773.816 2.748.816 3.18 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.769-5.766-5.769zm10.165 5.767c0 5.619-4.572 10.191-10.193 10.191-1.774 0-3.447-.461-4.908-1.265l-5.637 1.479 1.507-5.504c-.893-1.522-1.393-3.292-1.393-5.176 0-5.621 4.573-10.193 10.194-10.193 5.621 0 10.193 4.572 10.193 10.192z" />
+        </svg>
+        <span>Urgent? Ping Us on WhatsApp</span>
+      </a>
+
+      <button
+        type="button"
+        id="btn-reset-form"
+        class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-content-secondary hover:text-brand-700 bg-white hover:bg-surface-subtle border border-line-medium rounded-lg transition-colors min-h-touch focus-visible:ring-4 focus-visible:ring-brand-400"
+      >
+        Send Another Inquiry
+      </button>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Contact Form -->
+  <form
+    id={id}
+    action={endpoint}
+    method="POST"
+    novalidate
+    class="bg-surface-light border border-line-light rounded-2xl p-6 sm:p-8 lg:p-10 shadow-card transition-all"
+    aria-label="Project quote and inquiry form"
+  >
+    <!-- Top Submission Error Alert (Hidden by default, shown on network or endpoint failure) -->
+    <div
+      id="form-error-banner"
+      class="hidden mb-8 rounded-xl border border-rose-300 bg-rose-50 p-4 sm:p-5 text-rose-900 transition-all"
+      role="alert"
+      tabindex="-1"
+    >
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-rose-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <div class="flex-grow text-sm">
+          <h3 class="font-semibold text-rose-900 mb-1">
+            Unable to submit your inquiry automatically
+          </h3>
+          <p class="text-rose-800 leading-relaxed mb-3">
+            A network issue or server timeout prevented automatic dispatch. Please retry or contact us directly via phone or WhatsApp so we can assist you right away.
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <a
+              href="tel:+919745551513"
+              class="inline-flex items-center gap-1.5 font-semibold text-brand-700 hover:text-brand-900 underline"
+            >
+              Call +91 9745551513
+            </a>
+            <span class="text-rose-400" aria-hidden="true">•</span>
+            <a
+              href="https://wa.me/919745551513"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 font-semibold text-whatsapp-hover hover:text-whatsapp-base underline"
+            >
+              WhatsApp (+91 9745551513)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anti-Spam Honeypot Field (Invisible to human users, traps automated bots) -->
+    <!-- Styled with offscreen CSS and visually-hidden techniques -->
+    <div
+      class="sr-only"
+      aria-hidden="true"
+      style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;"
+    >
+      <label for="_gotcha">Do not fill this field if you are a human user</label>
+      <input
+        type="text"
+        id="_gotcha"
+        name="_gotcha"
+        tabindex="-1"
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Hidden Form Configuration Fields for FormSubmit.co -->
+    <input type="hidden" name="_subject" value="New Project Inquiry — 99COMLABS Website" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <!-- Field 1: Full Name (Required) -->
+      <div class="sm:col-span-2">
+        <label for="fullName" class="block text-sm font-semibold text-content-primary mb-2">
+          Full Name
+          <span class="text-rose-600 font-bold" aria-hidden="true">*</span>
+          <span class="sr-only">(required)</span>
+        </label>
+        <div class="relative">
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            autocomplete="name"
+            placeholder="e.g. Rahul Menon"
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="fullName-error"
+            class="w-full px-4 py-3 text-base text-content-primary bg-surface-light border border-line-medium rounded-lg shadow-sm placeholder:text-content-subtle focus:outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-100 transition-colors min-h-touch"
+          />
+        </div>
+        <p
+          id="fullName-error"
+          class="hidden text-sm text-rose-600 font-medium mt-1.5 flex items-center gap-1.5"
+          role="alert"
+        >
+          <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span>Please enter your full name (minimum 2 characters).</span>
+        </p>
+      </div>
+
+      <!-- Field 2: Email Address (Required) -->
+      <div>
+        <label for="email" class="block text-sm font-semibold text-content-primary mb-2">
+          Work Email
+          <span class="text-rose-600 font-bold" aria-hidden="true">*</span>
+          <span class="sr-only">(required)</span>
+        </label>
+        <div class="relative">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="email"
+            inputmode="email"
+            placeholder="name@company.com"
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="email-error"
+            class="w-full px-4 py-3 text-base text-content-primary bg-surface-light border border-line-medium rounded-lg shadow-sm placeholder:text-content-subtle focus:outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-100 transition-colors min-h-touch"
+          />
+        </div>
+        <p
+          id="email-error"
+          class="hidden text-sm text-rose-600 font-medium mt-1.5 flex items-center gap-1.5"
+          role="alert"
+        >
+          <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span>Please enter a valid email address (e.g. name@domain.com).</span>
+        </p>
+      </div>
+
+      <!-- Field 3: Phone Number (Required) -->
+      <div>
+        <label for="phone" class="block text-sm font-semibold text-content-primary mb-2">
+          Phone Number
+          <span class="text-rose-600 font-bold" aria-hidden="true">*</span>
+          <span class="sr-only">(required)</span>
+        </label>
+        <div class="relative">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            required
+            autocomplete="tel"
+            inputmode="tel"
+            placeholder="+91 97455 51513"
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="phone-error phone-hint"
+            class="w-full px-4 py-3 text-base text-content-primary bg-surface-light border border-line-medium rounded-lg shadow-sm placeholder:text-content-subtle focus:outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-100 transition-colors min-h-touch"
+          />
+        </div>
+        <div class="flex justify-between items-center mt-1">
+          <span id="phone-hint" class="text-xs text-content-subtle">
+            For phone coordination or WhatsApp project updates.
+          </span>
+        </div>
+        <p
+          id="phone-error"
+          class="hidden text-sm text-rose-600 font-medium mt-1 flex items-center gap-1.5"
+          role="alert"
+        >
+          <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span>Please enter a valid phone number (minimum 10 digits).</span>
+        </p>
+      </div>
+
+      <!-- Field 4: Service Domain (Required Select) -->
+      <div>
+        <label for="serviceCategory" class="block text-sm font-semibold text-content-primary mb-2">
+          Primary Service Domain
+          <span class="text-rose-600 font-bold" aria-hidden="true">*</span>
+          <span class="sr-only">(required)</span>
+        </label>
+        <div class="relative">
+          <select
+            id="serviceCategory"
+            name="serviceCategory"
+            required
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="serviceCategory-error"
+            class="w-full px-4 py-3 text-base text-content-primary bg-surface-light border border-line-medium rounded-lg shadow-sm focus:outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-100 transition-colors min-h-touch appearance-none pr-10 cursor-pointer"
+          >
+            <option value="" disabled selected>Select technical domain...</option>
+            <option value="Web & Mobile Apps">Custom Web & Mobile Applications</option>
+            <option value="IoT & Electronics">IoT Devices, Firmware & Electronics</option>
+            <option value="Cloud & Security">Cloud Architecture & Cyber Security</option>
+            <option value="Digital Growth">Digital Growth, SEO & Branding</option>
+            <option value="Other / Consulting">Other Technical Consultation</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-content-muted" aria-hidden="true">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+        <p
+          id="serviceCategory-error"
+          class="hidden text-sm text-rose-600 font-medium mt-1.5 flex items-center gap-1.5"
+          role="alert"
+        >
+          <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span>Please select a service domain.</span>
+        </p>
+      </div>
+
+      <!-- Field 5: Estimated Budget Range (Optional Select) -->
+      <div>
+        <label for="projectBudget" class="block text-sm font-semibold text-content-primary mb-2">
+          Estimated Budget Range
+          <span class="text-xs font-normal text-content-subtle ml-1">(Optional)</span>
+        </label>
+        <div class="relative">
+          <select
+            id="projectBudget"
+            name="projectBudget"
+            class="w-full px-4 py-3 text-base text-content-primary bg-surface-light border border-line-medium rounded-lg shadow-sm focus:outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-100 transition-colors min-h-touch appearance-none pr-10 cursor-pointer"
+          >
+            <option value="">Select preliminary budget (optional)...</option>
+            <option value="Under ₹50,000">Under ₹50,000 (Starter / MVP Prototype)</option>
+            <option value="₹50,000 - ₹1,50,000">₹50,000 – ₹1,50,000 (Growth / Custom Solution)</option>
+            <option value="₹1,50,000 - ₹5,00,000">₹1,50,000 – ₹5,00,000 (Production Scale / Platform)</option>
+            <option value="₹5,00,000+">₹5,00,000+ (Enterprise / Hardware + Cloud Suite)</option>
+            <option value="Flexible / Needs Estimation">Flexible / Need architectural estimate</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-content-muted" aria-hidden="true">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+        <p class="text-xs text-content-subtle mt-1">
+          Helps us recommend the most pragmatic technology stack.
+        </p>
+      </div>
+
+      <!-- Field 6: Requirements / Project Details (Required Textarea, min 15 chars) -->
+      <div class="sm:col-span-2">
+        <label for="projectDetails" class="block text-sm font-semibold text-content-primary mb-2">
+          Project Requirements & Objectives
+          <span class="text-rose-600 font-bold" aria-hidden="true">*</span>
+          <span class="sr-only">(required)</span>
+        </label>
+        <textarea
+          id="projectDetails"
+          name="projectDetails"
+          rows="4"
+          required
+          minlength="15"
+          placeholder="Briefly describe what you're building, target timeline, or existing systems you need integrated (minimum 15 characters)..."
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="projectDetails-error projectDetails-counter"
+          class="w-full px-4 py-3 text-base text-content-primary bg-surface-light border border-line-medium rounded-lg shadow-sm placeholder:text-content-subtle focus:outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-100 transition-colors leading-relaxed"
+        ></textarea>
+        <div class="flex justify-between items-center text-xs mt-1.5">
+          <span class="text-content-subtle">
+            Minimum 15 characters required.
+          </span>
+          <span id="projectDetails-counter" class="font-mono text-content-subtle">
+            <span id="char-count">0</span> / 15 min
+          </span>
+        </div>
+        <p
+          id="projectDetails-error"
+          class="hidden text-sm text-rose-600 font-medium mt-1.5 flex items-center gap-1.5"
+          role="alert"
+        >
+          <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span>Please provide at least 15 characters describing your requirements.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Privacy & Commercial Guarantee Notice -->
+    <div class="mt-6 pt-6 border-t border-line-light flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="text-xs text-content-muted leading-relaxed">
+        <span class="font-semibold text-content-primary">Privacy Guarantee:</span>
+        We respect your intellectual property. All project briefs are held strictly confidential.
+        Review our <a href="/privacy/" class="text-brand-700 underline hover:text-brand-900">Privacy Policy</a>.
+      </div>
+    </div>
+
+    <!-- Form Submit Button Container -->
+    <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+      <button
+        type="submit"
+        id="btn-submit-inquiry"
+        class="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-semibold text-white bg-brand-700 hover:bg-brand-800 active:bg-brand-900 rounded-lg shadow-sm hover:shadow transition-all duration-150 focus-visible:ring-4 focus-visible:ring-brand-400 focus-visible:ring-offset-2 min-h-touch disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
+      >
+        <span id="btn-text">Submit Project Inquiry</span>
+        <!-- Normal Arrow Icon -->
+        <svg
+          id="btn-icon-arrow"
+          class="w-5 h-5 text-brand-200 group-hover:translate-x-0.5 transition-transform"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+        <!-- Accessible Loading Spinner (Hidden by default) -->
+        <svg
+          id="btn-spinner"
+          class="hidden w-5 h-5 animate-spin text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          role="status"
+          aria-label="Submitting inquiry"
+        >
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </button>
+
+      <span class="text-xs text-content-subtle text-center sm:text-left">
+        Response guaranteed within 24 business hours from our Kerala engineering lab.
+      </span>
+    </div>
+  </form>
+</div>
+
+<!-- Progressive Enhancement & Client Submission Script -->
+<script is:inline>
+  (function initContactForm() {
+    const form = document.getElementById('contact-inquiry-form');
+    if (!form) return;
+
+    const successBox = document.getElementById('form-success-container');
+    const errorBanner = document.getElementById('form-error-banner');
+    const submitBtn = document.getElementById('btn-submit-inquiry');
+    const btnText = document.getElementById('btn-text');
+    const btnArrow = document.getElementById('btn-icon-arrow');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const resetBtn = document.getElementById('btn-reset-form');
+
+    // Form inputs
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const serviceInput = document.getElementById('serviceCategory');
+    const budgetInput = document.getElementById('projectBudget');
+    const detailsInput = document.getElementById('projectDetails');
+    const gotchaInput = document.getElementById('_gotcha');
+    const charCountEl = document.getElementById('char-count');
+    const charCounterContainer = document.getElementById('projectDetails-counter');
+
+    // Error message containers
+    const errors = {
+      fullName: document.getElementById('fullName-error'),
+      email: document.getElementById('email-error'),
+      phone: document.getElementById('phone-error'),
+      serviceCategory: document.getElementById('serviceCategory-error'),
+      projectDetails: document.getElementById('projectDetails-error')
+    };
+
+    // Live character counter for requirements textarea
+    if (detailsInput && charCountEl) {
+      detailsInput.addEventListener('input', function() {
+        const len = this.value.trim().length;
+        charCountEl.textContent = len;
+        if (len >= 15) {
+          charCounterContainer.classList.remove('text-content-subtle', 'text-amber-600');
+          charCounterContainer.classList.add('text-emerald-600');
+        } else if (len > 0) {
+          charCounterContainer.classList.remove('text-emerald-600', 'text-content-subtle');
+          charCounterContainer.classList.add('text-amber-600');
+        } else {
+          charCounterContainer.classList.remove('text-emerald-600', 'text-amber-600');
+          charCounterContainer.classList.add('text-content-subtle');
+        }
+      });
+    }
+
+    // Helper: Mark field error state
+    function setFieldError(input, errorEl, isError) {
+      if (!input || !errorEl) return;
+      if (isError) {
+        input.setAttribute('aria-invalid', 'true');
+        input.classList.add('border-rose-500', 'focus:ring-rose-200', 'bg-rose-50/20');
+        input.classList.remove('border-line-medium', 'focus:ring-brand-100');
+        errorEl.classList.remove('hidden');
+      } else {
+        input.setAttribute('aria-invalid', 'false');
+        input.classList.remove('border-rose-500', 'focus:ring-rose-200', 'bg-rose-50/20');
+        input.classList.add('border-line-medium', 'focus:ring-brand-100');
+        errorEl.classList.add('hidden');
+      }
+    }
+
+    // Field-specific validation functions
+    function validateFullName() {
+      const valid = fullNameInput.value.trim().length >= 2;
+      setFieldError(fullNameInput, errors.fullName, !valid);
+      return valid;
+    }
+
+    function validateEmail() {
+      const val = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const valid = emailRegex.test(val);
+      setFieldError(emailInput, errors.email, !valid);
+      return valid;
+    }
+
+    function validatePhone() {
+      const raw = phoneInput.value.replace(/[^0-9]/g, '');
+      const valid = raw.length >= 10;
+      setFieldError(phoneInput, errors.phone, !valid);
+      return valid;
+    }
+
+    function validateService() {
+      const valid = serviceInput.value.trim() !== '';
+      setFieldError(serviceInput, errors.serviceCategory, !valid);
+      return valid;
+    }
+
+    function validateDetails() {
+      const valid = detailsInput.value.trim().length >= 15;
+      setFieldError(detailsInput, errors.projectDetails, !valid);
+      return valid;
+    }
+
+    // Attach blur validation for accessible inline feedback
+    fullNameInput?.addEventListener('blur', validateFullName);
+    emailInput?.addEventListener('blur', validateEmail);
+    phoneInput?.addEventListener('blur', validatePhone);
+    serviceInput?.addEventListener('change', validateService);
+    detailsInput?.addEventListener('blur', validateDetails);
+
+    // Form Submission Handler
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      // Reset top error banner
+      if (errorBanner) errorBanner.classList.add('hidden');
+
+      // 1. Honeypot check: If bot filled the hidden field, simulate immediate success
+      if (gotchaInput && gotchaInput.value.trim() !== '') {
+        console.warn('Honeypot caught submission attempt.');
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        successBox.focus();
+        return;
+      }
+
+      // 2. Validate all mandatory fields
+      const isNameValid = validateFullName();
+      const isEmailValid = validateEmail();
+      const isPhoneValid = validatePhone();
+      const isServiceValid = validateService();
+      const isDetailsValid = validateDetails();
+
+      const allValid = isNameValid && isEmailValid && isPhoneValid && isServiceValid && isDetailsValid;
+
+      if (!allValid) {
+        // Focus the first invalid field for keyboard & screen reader accessibility
+        if (!isNameValid) fullNameInput.focus();
+        else if (!isEmailValid) emailInput.focus();
+        else if (!isPhoneValid) phoneInput.focus();
+        else if (!isServiceValid) serviceInput.focus();
+        else if (!isDetailsValid) detailsInput.focus();
+        return;
+      }
+
+      // 3. Enter submitting loading state
+      submitBtn.disabled = true;
+      btnText.textContent = 'Submitting Inquiry...';
+      btnArrow.classList.add('hidden');
+      btnSpinner.classList.remove('hidden');
+
+      const formData = {
+        fullName: fullNameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim(),
+        serviceCategory: serviceInput.value,
+        projectBudget: budgetInput?.value || 'Not specified',
+        projectDetails: detailsInput.value.trim(),
+        _subject: 'New Project Inquiry — 99COMLABS Website'
+      };
+
+      try {
+        const actionUrl = form.getAttribute('action') || 'https://formsubmit.co/ajax/connect@99comlabs.co.in';
+
+        const response = await fetch(actionUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          // Success! Fire GA4 conversion event if analytics script is loaded
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'generate_lead', {
+              form_name: 'contact_form',
+              service_category: formData.serviceCategory,
+              budget_range: formData.projectBudget
+            });
+          }
+
+          // Show success state and hide form
+          form.classList.add('hidden');
+          successBox.classList.remove('hidden');
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          successBox.focus();
+        } else {
+          throw new Error('Endpoint returned HTTP ' + response.status);
+        }
+      } catch (err) {
+        console.error('Contact form submission error:', err);
+        // Display accessible error banner
+        if (errorBanner) {
+          errorBanner.classList.remove('hidden');
+          errorBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          errorBanner.focus();
+        }
+      } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        btnText.textContent = 'Submit Project Inquiry';
+        btnArrow.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      }
+    });
+
+    // Reset Form Handler
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function() {
+        form.reset();
+        if (charCountEl) charCountEl.textContent = '0';
+        if (charCounterContainer) {
+          charCounterContainer.classList.remove('text-emerald-600', 'text-amber-600');
+          charCounterContainer.classList.add('text-content-subtle');
+        }
+
+        // Hide all errors
+        Object.values(errors).forEach(el => el?.classList.add('hidden'));
+        [fullNameInput, emailInput, phoneInput, serviceInput, detailsInput].forEach(inp => {
+          if (inp) {
+            inp.setAttribute('aria-invalid', 'false');
+            inp.classList.remove('border-rose-500', 'focus:ring-rose-200', 'bg-rose-50/20');
+            inp.classList.add('border-line-medium', 'focus:ring-brand-100');
+          }
+        });
+
+        successBox.classList.add('hidden');
+        form.classList.remove('hidden');
+        fullNameInput.focus();
+      });
+    }
+  })();
+</script>

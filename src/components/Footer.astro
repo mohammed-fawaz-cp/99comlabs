@@ -1,0 +1,173 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+
+const serviceLinks = [
+  { name: 'Custom Web & Mobile Apps', href: '/services/web-and-mobile-apps/' },
+  { name: 'Embedded IoT & Electronics', href: '/services/iot-and-electronics/' },
+  { name: 'Cloud Hosting & Security', href: '/services/cloud-hosting-and-security/' },
+  { name: 'Digital Growth & Branding', href: '/services/digital-growth-and-branding/' },
+  { name: 'All Services Directory', href: '/services/' },
+];
+
+const companyLinks = [
+  { name: 'Engineering Projects', href: '/projects/' },
+  { name: 'About 99COMLABS', href: '/about/' },
+  { name: 'Engineering Blog', href: '/blog/' },
+  { name: 'Preserved Client Helpdesk', href: '/support/', isHighlight: true },
+  { name: 'Contact & Project Inquiry', href: '/contact/' },
+];
+---
+
+<footer class="bg-surface-dark text-slate-300 border-t border-slate-800 transition-colors" role="contentinfo">
+  <!-- Main Multi-Column Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+
+      <!-- Column 1: Identity & Engineering Ethos -->
+      <div class="space-y-4">
+        <a href="/" class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-brand-400 rounded-lg p-0.5 inline-flex" aria-label="99COMLABS Home">
+          <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white">
+            <svg class="w-6 h-6" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="6" width="28" height="28" rx="6" stroke="currentColor" stroke-width="2.5" />
+              <path d="M15 16C12.7909 16 11 17.5 11 19.5C11 21.5 12.7909 23 15 23C17.5 23 19.5 19.5 20 19.5C20.5 19.5 22.5 23 25 23C27.2091 23 29 21.5 29 19.5C29 17.5 27.2091 16 25 16Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M15 27.5 C17.5 29.5, 22.5 29.5, 25 27.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <span class="font-heading font-bold text-2xl tracking-tight text-white group-hover:text-brand-300 transition-colors">
+            99COMLABS
+          </span>
+        </a>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Integrated technology & engineering lab in Kerala, India. We design custom software platforms, embedded IoT hardware, and high-availability cloud infrastructure for growing businesses.
+        </p>
+        <div class="pt-2 text-xs text-slate-400 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+          <span>Postal PIN: <strong>676304</strong> (Kerala, India)</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Core Engineering Services -->
+      <div>
+        <h3 class="font-heading font-semibold text-white text-base tracking-wide mb-4">
+          Engineering Services
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          {serviceLinks.map((service) => (
+            <li>
+              <a
+                href={service.href}
+                class="text-slate-400 hover:text-white transition-colors block py-0.5"
+              >
+                {service.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 3: Company & Direct Helpdesk -->
+      <div>
+        <h3 class="font-heading font-semibold text-white text-base tracking-wide mb-4">
+          Company & Helpdesk
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          {companyLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class={`transition-colors block py-0.5 ${
+                  item.isHighlight
+                    ? 'text-emerald-400 font-semibold hover:text-emerald-300'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                {item.name}
+                {item.isHighlight && (
+                  <span class="ml-1 text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono">
+                    #99LAB
+                  </span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 4: Verified Contact Information -->
+      <div class="space-y-3.5">
+        <h3 class="font-heading font-semibold text-white text-base tracking-wide mb-4">
+          Contact & Location
+        </h3>
+        
+        <div class="text-sm text-slate-400 space-y-1">
+          <p class="font-medium text-slate-200">Lab & Office Address:</p>
+          <p class="text-slate-400">[CONFIRM STREET ADDRESS]</p>
+          <p class="text-slate-400">Kottakkal, Malappuram District</p>
+          <p class="text-slate-400">Kerala, India — PIN 676304</p>
+        </div>
+
+        <div class="pt-2 space-y-2 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400">Phone:</span>
+            <a
+              href="tel:+919745551513"
+              class="font-semibold text-white hover:text-brand-300 transition-colors"
+            >
+              +91 9745551513
+            </a>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400">WhatsApp:</span>
+            <a
+              href="https://wa.me/919745551513"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              +91 9745551513
+            </a>
+          </div>
+
+          <div class="flex items-start gap-2">
+            <span class="text-slate-400">Email:</span>
+            <div class="space-y-0.5">
+              <a
+                href="mailto:connect@99comlabs.co.in"
+                class="font-medium text-white hover:text-brand-300 transition-colors block"
+              >
+                connect@99comlabs.co.in
+              </a>
+              <a
+                href="mailto:support@99comlabs.co.in"
+                class="text-xs text-slate-400 hover:text-slate-300 transition-colors block"
+              >
+                support@99comlabs.co.in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Legal & Compliance Bar -->
+  <div class="border-t border-slate-800/80 bg-slate-950/60 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div>
+        <p>© {currentYear} 99COMLABS. All rights reserved. Registered in Kerala, India (PIN 676304).</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/privacy/" class="hover:text-slate-200 transition-colors">Privacy Policy</a>
+        <a href="/terms/" class="hover:text-slate-200 transition-colors">Terms of Service</a>
+        <a href="/support/" class="hover:text-emerald-400 transition-colors">Client Support Portal</a>
+        <span class="text-slate-400 hidden sm:inline" aria-hidden="true">•</span>
+        <span class="text-slate-400">Static-first Astro build • Zero client runtime JS by default</span>
+      </div>
+    </div>
+  </div>
+</footer>
+

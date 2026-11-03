@@ -1,0 +1,156 @@
+---
+// src/pages/privacy.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Privacy Policy";
+// BaseLayout appends " | 99COMLABS" -> 14 + 12 = 26 chars (strictly < 60)
+const pageDescription = "Privacy Policy for 99COMLABS. Explains our data collection, cookie usage, IT Act 2000 compliance, GDPR disclosures, and client data protection practices.";
+// 151 chars (strictly < 160)
+
+const breadcrumbs = [
+  { name: 'Privacy Policy', url: '/privacy/' }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs}>
+  <div class="bg-surface-light py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <header class="mb-10 pb-8 border-b border-line-light">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-muted border border-line-light text-xs font-semibold text-content-muted mb-4">
+          <span>Legal Documentation • Last Updated: March 2026</span>
+        </div>
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary mb-4">
+          Privacy Policy
+        </h1>
+        <p class="text-base sm:text-lg text-content-secondary leading-relaxed">
+          At 99COMLABS, we respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines our data handling practices in accordance with the Information Technology Act, 2000 (India) and international standards including the General Data Protection Regulation (GDPR).
+        </p>
+      </header>
+
+      <!-- Main Legal Content -->
+      <div class="prose prose-slate max-w-none text-content-secondary space-y-8 leading-relaxed">
+        
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            1. Information We Collect
+          </h2>
+          <p>
+            When you interact with 99COMLABS via our website (<a href="https://99comlabs.co.in/" class="text-brand-700 underline">https://99comlabs.co.in/</a>), contact forms, floating WhatsApp messaging, or our preserved Support Helpdesk (<a href="/support/" class="text-brand-700 underline">/support/</a>), we may collect the following categories of information:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li><strong>Inquiry & Contact Details:</strong> Full name, company name, email address, telephone/WhatsApp number, and project specifications provided when requesting a quote.</li>
+            <li><strong>Support Ticket Information:</strong> Ticket IDs, technical descriptions, system error details, and correspondence submitted via our helpdesk portal.</li>
+            <li><strong>Automated Telemetry & Server Logs:</strong> Standard web server logs including IP addresses, browser types, operating systems, referring URLs, and timestamps to ensure network security and prevent denial-of-service attacks.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            2. Purpose of Data Processing
+          </h2>
+          <p>
+            We process your personal information strictly for legitimate commercial purposes:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li>To formulate engineering estimates, proposals, and project scopes requested by you.</li>
+            <li>To deliver custom software, hardware prototypes, and cloud engineering services.</li>
+            <li>To authenticate client identity and diagnose technical support tickets.</li>
+            <li>To maintain website performance, prevent fraudulent spam submissions, and fulfill legal reporting requirements under Indian law.</li>
+          </ul>
+          <p class="mt-2 font-semibold text-content-primary">
+            We do not sell, rent, or trade your personal data to third parties or advertising brokers under any circumstances.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            3. Compliance with the Information Technology Act, 2000 (India)
+          </h2>
+          <p>
+            This policy is formulated in compliance with Section 43A of the Information Technology Act, 2000, and the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011.
+          </p>
+          <p class="mt-2">
+            We implement comprehensive technical and administrative safeguards—including HTTPS SSL/TLS encryption, server-side access controls, and firewall restrictions—to protect stored personal data against unauthorized access, alteration, or disclosure.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            4. International Visitors & GDPR Rights
+          </h2>
+          <p>
+            For visitors accessing our website from the European Union or jurisdictions with comparable data privacy frameworks, 99COMLABS serves as the Data Controller. You are entitled to the following rights:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li><strong>Right of Access:</strong> Request a copy of the personal information we hold about you.</li>
+            <li><strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete information.</li>
+            <li><strong>Right to Erasure ("Right to be Forgotten"):</strong> Request deletion of your personal records, subject to statutory record-retention requirements.</li>
+            <li><strong>Right to Restrict or Object:</strong> Object to specific data processing activities or request restrictions on data handling.</li>
+          </ul>
+          <p class="mt-2">
+            To exercise any of these rights, contact our designated Grievance Officer using the details below.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            5. Cookies and Web Analytics
+          </h2>
+          <p>
+            Our website is engineered with a static-first, zero-runtime JavaScript architecture. We do not use third-party behavioral advertising cookies, retargeting pixels, or intrusive tracking scripts.
+          </p>
+          <p class="mt-2">
+            We may utilize privacy-respecting, aggregated website telemetry (such as Google Analytics 4 placeholders with IP anonymization) strictly to understand page view volume, popular technology guides, and general geographic distribution across India.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            6. Data Retention Period
+          </h2>
+          <p>
+            We retain client inquiry records and project documentation for a period of three (3) years following the conclusion of commercial engagements for accounting, warranty, and tax audit compliance, after which records are securely purged.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            7. Grievance Officer Contact Details
+          </h2>
+          <p>
+            In accordance with Rule 5(9) of the Information Technology (Intermediaries Guidelines) Rules and Rule 4 of the SPDI Rules, 2011, the details of our designated Grievance Officer are:
+          </p>
+          <div class="bg-surface-muted rounded-xl border border-line-light p-6 my-4 space-y-2 text-sm sm:text-base">
+            <p><strong>Designation:</strong> Grievance Officer, 99COMLABS</p>
+            <p><strong>Email:</strong> <a href="mailto:connect@99comlabs.co.in" class="text-brand-700 underline">connect@99comlabs.co.in</a> (cc: <a href="mailto:support@99comlabs.co.in" class="text-brand-700 underline">support@99comlabs.co.in</a>)</p>
+            <p><strong>Telephone / WhatsApp:</strong> <a href="tel:+919745551513" class="text-brand-700 underline">+91 9745551513</a></p>
+            <p><strong>Postal Address:</strong> 99COMLABS Engineering Lab, [CONFIRM FULL STREET ADDRESS], Kottakkal, Malappuram District, Kerala, India - 676304</p>
+            <p class="text-xs text-content-muted pt-2 border-t border-line-light">
+              Response Commitment: We acknowledge all privacy grievances within 48 business hours and resolve inquiries within thirty (30) days from receipt.
+            </p>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Quick Back Nav -->
+      <div class="mt-12 pt-8 border-t border-line-light flex items-center justify-between text-sm">
+        <a href="/" class="font-semibold text-brand-700 hover:underline flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Home
+        </a>
+        <a href="/terms/" class="font-semibold text-brand-700 hover:underline flex items-center gap-1">
+          View Terms of Service
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,292 @@
+---
+// src/pages/blog/why-website-not-getting-leads-fixes.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "Fix Website Not Getting Leads";
+// BaseLayout appends " | 99COMLABS" -> 31 + 12 = 43 chars (strictly < 60)
+const pageDescription = "Why isn't your business website generating inquiries? Discover 7 practical, proven fixes to turn website visitors into phone calls and WhatsApp leads.";
+// 151 chars (strictly < 160)
+
+const articleUrl = "https://99comlabs.co.in/blog/why-website-not-getting-leads-fixes/";
+const publishDate = "2026-03-28T14:00:00+05:30";
+const formattedDate = "March 28, 2026";
+const readTime = "6 min read";
+
+const breadcrumbs = [
+  { name: 'Blog', url: '/blog/' },
+  { name: 'Why Website Isn\'t Getting Leads', url: '/blog/why-website-not-getting-leads-fixes/' }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={articleUrl}
+  ogType="article"
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Schema.org Article & BreadcrumbList structured data -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Why Your Business Website Isn't Getting Inquiries (And 7 Ways to Fix It)",
+    "description": pageDescription,
+    "url": articleUrl,
+    "datePublished": publishDate,
+    "dateModified": publishDate,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": articleUrl
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "99COMLABS Engineering Team",
+      "url": "https://99comlabs.co.in/about/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "99COMLABS",
+      "url": "https://99comlabs.co.in/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://99comlabs.co.in/images/logo.svg"
+      }
+    }
+  })} />
+
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://99comlabs.co.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://99comlabs.co.in/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Why Website Isn't Getting Leads",
+        "item": articleUrl
+      }
+    ]
+  })} />
+
+  <!-- Article Container -->
+  <article class="bg-surface-light py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Article Header -->
+      <header class="mb-10 pb-8 border-b border-line-light">
+        <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-content-muted mb-4">
+          <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+            Digital Growth & Strategy
+          </span>
+          <span aria-hidden="true">•</span>
+          <time datetime={publishDate}>{formattedDate}</time>
+          <span aria-hidden="true">•</span>
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {readTime}
+          </span>
+          <span aria-hidden="true">•</span>
+          <span>By 99COMLABS Engineering Team</span>
+        </div>
+
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary leading-tight mb-6">
+          Why Your Business Website Isn't Getting Inquiries (And 7 Ways to Fix It)
+        </h1>
+
+        <p class="text-lg sm:text-xl text-content-secondary leading-relaxed font-medium">
+          You spent weeks preparing content, approved a website design, and launched your new company domain. But weeks turn into months, and your inbox remains empty. No phone calls, no WhatsApp messages, and zero quotation requests. Before you waste money buying digital ads to drive more traffic, here is how to diagnose and fix a leaking business website.
+        </p>
+      </header>
+
+      <!-- Key Takeaway Box -->
+      <div class="bg-surface-muted rounded-xl border border-line-light p-6 mb-10">
+        <h2 class="font-heading text-lg font-bold text-content-primary mb-2 flex items-center gap-2">
+          <svg class="w-5 h-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          The Core Reality: Traffic Does Not Fix Confusion
+        </h2>
+        <p class="text-content-secondary text-sm sm:text-base leading-relaxed">
+          If your website fails to convert 100 visitors, paying Google or Instagram to send you 1,000 visitors simply means 1,000 people leave without buying. The problem is almost never lack of traffic—it is friction, confusing headlines, slow mobile loading, or hidden contact methods.
+        </p>
+      </div>
+
+      <!-- Article Body Content -->
+      <div class="prose prose-slate max-w-none text-content-secondary space-y-8 leading-relaxed">
+        
+        <section>
+          <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-4">
+            The Seven Simple Fixes That Turn Visitors into Customers
+          </h2>
+          <p>
+            Here are seven practical changes you can implement immediately to transform your website from an idle digital brochure into an active business inquiry generator:
+          </p>
+
+          <div class="space-y-6 my-6">
+            
+            <div class="border border-line-light rounded-xl p-6 bg-surface-light">
+              <h3 class="font-heading text-xl font-bold text-content-primary mb-2">
+                Fix 1: Pass the "5-Second Clarity Test"
+              </h3>
+              <p class="text-sm sm:text-base mb-2">
+                When a potential client opens your homepage on their mobile phone, they will give you at most five seconds before deciding whether to stay or tap the back button.
+              </p>
+              <p class="text-sm sm:text-base text-content-muted">
+                <strong>The Solution:</strong> Your main headline must state exactly what you do, who you serve, and where you operate. Replace vague slogans like <em>"Empowering Synergies for Tomorrow"</em> with direct statements like <em>"We build custom mobile apps, smart electronics, and websites for growing businesses in Kerala."</em>
+              </p>
+            </div>
+
+            <div class="border border-line-light rounded-xl p-6 bg-surface-light">
+              <h3 class="font-heading text-xl font-bold text-content-primary mb-2">
+                Fix 2: Eradicate Unexplained Technical Jargon
+              </h3>
+              <p class="text-sm sm:text-base mb-2">
+                Non-technical executives, hospital directors, retail owners, and factory managers do not care about "containerized Kubernetes clusters" or "reactive full-stack paradigms." They care about whether their website will crash, how much money they will save, and how quickly their staff can learn the software.
+              </p>
+              <p class="text-sm sm:text-base text-content-muted">
+                <strong>The Solution:</strong> Replace every technical buzzword with the business outcome it produces. Talk about "zero downtime during peak sales" rather than "high-availability load balancing."
+              </p>
+            </div>
+
+            <div class="border border-line-light rounded-xl p-6 bg-surface-light">
+              <h3 class="font-heading text-xl font-bold text-content-primary mb-2">
+                Fix 3: Add an Accessible Floating WhatsApp Button
+              </h3>
+              <p class="text-sm sm:text-base mb-2">
+                In India, WhatsApp is the dominant communication channel for business transactions. Many buyers find filling out a long desktop contact form tedious, especially on a smartphone.
+              </p>
+              <p class="text-sm sm:text-base text-content-muted">
+                <strong>The Solution:</strong> Place a high-contrast, accessible floating WhatsApp button on every single page of your site. Configure the link with a friendly pre-filled greeting so the customer only needs to press send.
+              </p>
+            </div>
+
+            <div class="border border-line-light rounded-xl p-6 bg-surface-light">
+              <h3 class="font-heading text-xl font-bold text-content-primary mb-2">
+                Fix 4: Put Your Direct Phone Number in Plain Sight
+              </h3>
+              <p class="text-sm sm:text-base mb-2">
+                When a customer needs an urgent quotation or technical support, hiding your phone number behind an FAQ or buried in the footer creates instant frustration.
+              </p>
+              <p class="text-sm sm:text-base text-content-muted">
+                <strong>The Solution:</strong> Display a clickable phone link directly in your website header and footer. Make sure it is plain text (+91 9745551513) so visitors can easily copy it or tap to dial on their mobile device.
+              </p>
+            </div>
+
+            <div class="border border-line-light rounded-xl p-6 bg-surface-light">
+              <h3 class="font-heading text-xl font-bold text-content-primary mb-2">
+                Fix 5: Drastically Shorten Your Contact Form
+              </h3>
+              <p class="text-sm sm:text-base mb-2">
+                Every additional field you ask a visitor to fill out cuts your conversion rate by 10% to 15%. If your form asks for fax number, company revenue, website address, street address, and postal code, visitors will abandon the page.
+              </p>
+              <p class="text-sm sm:text-base text-content-muted">
+                <strong>The Solution:</strong> Ask for only four things: Full Name, Phone or WhatsApp Number, Email Address, and a brief description of what they need. You can always gather more details during the first phone consultation.
+              </p>
+            </div>
+
+            <div class="border border-line-light rounded-xl p-6 bg-surface-light">
+              <h3 class="font-heading text-xl font-bold text-content-primary mb-2">
+                Fix 6: Cut Mobile Loading Time Below 2 Seconds
+              </h3>
+              <p class="text-sm sm:text-base mb-2">
+                Over 70% of web traffic in India originates from mobile phones on 4G or 5G cellular connections. If your website takes 5 or 6 seconds to load high-resolution uncompressed images or heavy scripts, prospective clients will leave before reading a single sentence.
+              </p>
+              <p class="text-sm sm:text-base text-content-muted">
+                <strong>The Solution:</strong> Compress all images into modern WebP format, specify width and height dimensions, and eliminate heavy client-side JavaScript frameworks where static HTML will suffice.
+              </p>
+            </div>
+
+            <div class="border border-line-light rounded-xl p-6 bg-surface-light">
+              <h3 class="font-heading text-xl font-bold text-content-primary mb-2">
+                Fix 7: Anchor Trust with Real Local Identity
+              </h3>
+              <p class="text-sm sm:text-base mb-2">
+                The internet is full of fly-by-night operators using stock photos of generic American office buildings and fake testimonials. Prospective clients are cautious about who they send advances to.
+              </p>
+              <p class="text-sm sm:text-base text-content-muted">
+                <strong>The Solution:</strong> Be completely honest about who you are. Display your genuine location (e.g. Kottakkal / Malappuram, Kerala, PIN 676304), real case studies, and transparent pricing ranges. Honest transparency builds more trust than a dozen stock photos.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-4">
+            How to Measure Your Improvements
+          </h2>
+          <p>
+            After making these adjustments, do not rely on guesswork. Set up Google Analytics 4 (GA4) conversion tracking to monitor three essential customer actions:
+          </p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li><strong>WhatsApp button clicks:</strong> How many visitors tapped to message your team directly.</li>
+            <li><strong>Phone number taps:</strong> How many mobile users initiated a direct phone call.</li>
+            <li><strong>Contact form submissions:</strong> How many quote inquiries were submitted successfully.</li>
+          </ul>
+          <p>
+            Tracking these three metrics gives you a direct, accurate pulse on your digital return on investment.
+          </p>
+        </section>
+
+      </div>
+
+      <!-- In-Article Conversion CTA -->
+      <div class="mt-12 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-8 sm:p-10 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="font-heading text-2xl font-bold text-content-primary mb-2">
+            Want a Free 15-Minute Website Review?
+          </h3>
+          <p class="text-content-secondary text-sm sm:text-base max-w-xl">
+            Send us your website address. A 99COMLABS engineer will review your loading speed, mobile clarity, and conversion flow, providing 3 actionable fixes at no charge.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          <a
+            href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20please%20review%20my%20website%20conversion%20rate."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-whatsapp-base hover:bg-whatsapp-hover rounded-lg shadow-sm transition-colors min-h-touch"
+          >
+            <span>Request Review on WhatsApp</span>
+          </a>
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center px-5 py-3 text-sm font-semibold text-brand-700 bg-surface-light hover:bg-surface-subtle border border-line-light rounded-lg shadow-sm transition-colors min-h-touch"
+          >
+            Contact Our Team
+          </a>
+        </div>
+      </div>
+
+      <!-- Article Navigation Bar -->
+      <nav class="mt-12 pt-8 border-t border-line-light flex items-center justify-between text-sm" aria-label="More guides">
+        <a href="/blog/cloud-hosting-vs-shared-hosting-guide/" class="font-semibold text-brand-700 hover:underline flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Previous: Cloud vs Shared Hosting
+        </a>
+        <a href="/blog/" class="font-semibold text-brand-700 hover:underline flex items-center gap-1">
+          All Technology Guides
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </nav>
+
+    </div>
+  </article>
+</BaseLayout>

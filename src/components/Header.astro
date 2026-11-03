@@ -1,0 +1,220 @@
+---
+// src/components/Header.astro
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services/' },
+  { name: 'Projects', href: '/projects/' },
+  { name: 'About', href: '/about/' },
+  { name: 'Blog', href: '/blog/' },
+  { name: 'Support', href: '/support/', isSpecial: true },
+  { name: 'Contact', href: '/contact/' },
+];
+
+const isLinkActive = (href: string) => {
+  if (href === '/') {
+    return pathname === '/' || pathname === '';
+  }
+  return pathname.startsWith(href);
+};
+---
+
+<header class="sticky top-0 z-40 bg-surface-light/95 backdrop-blur-md border-b border-line-light transition-colors duration-200" role="banner">
+  <!-- Top Utility Bar (Contact & Local Signals) -->
+  <div class="hidden sm:block bg-surface-muted border-b border-line-light py-1.5 px-4 text-xs text-content-muted">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-6">
+        <span class="inline-flex items-center gap-1.5 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          Kerala, India (PIN 676304)
+        </span>
+        <a href="mailto:connect@99comlabs.co.in" class="hover:text-brand-700 transition-colors">
+          connect@99comlabs.co.in
+        </a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>Direct Engineering Hotline:</span>
+        <a href="tel:+919745551513" class="font-semibold text-content-primary hover:text-brand-700 transition-colors">
+          +91 9745551513
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-brand-600 rounded-lg p-1" aria-label="99COMLABS Home">
+        <div class="w-10 h-10 rounded-xl bg-brand-700 flex items-center justify-center shadow-sm group-hover:bg-brand-800 transition-colors">
+          <!-- Authentic 99COMLABS IC Loop Emblem -->
+          <svg class="w-6 h-6 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="6" y="6" width="28" height="28" rx="6" stroke="currentColor" stroke-width="2.5" />
+            <path d="M15 16C12.7909 16 11 17.5 11 19.5C11 21.5 12.7909 23 15 23C17.5 23 19.5 19.5 20 19.5C20.5 19.5 22.5 23 25 23C27.2091 23 29 21.5 29 19.5C29 17.5 27.2091 16 25 16Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15 27.5 C17.5 29.5, 22.5 29.5, 25 27.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-heading font-bold text-2xl tracking-tight text-content-primary group-hover:text-brand-700 transition-colors">
+            99COMLABS
+          </span>
+          <span class="block text-[11px] font-semibold text-content-subtle uppercase tracking-widest leading-none">
+            Engineering Lab
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+        {navLinks.map((link) => {
+          const active = isLinkActive(link.href);
+          return (
+            <a
+              href={link.href}
+              aria-current={active ? 'page' : undefined}
+              class={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 min-h-touch flex items-center ${
+                active
+                  ? 'text-brand-700 bg-brand-50 font-semibold shadow-sm'
+                  : 'text-content-secondary hover:text-brand-700 hover:bg-surface-subtle'
+              } ${link.isSpecial ? 'border border-line-light bg-surface-muted' : ''}`}
+            >
+              {link.name}
+              {link.isSpecial && (
+                <span class="ml-1.5 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 rounded">
+                  Helpdesk
+                </span>
+              )}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Desktop Action Cluster (Phone + Get Quote CTA) -->
+      <div class="hidden sm:flex items-center space-x-4">
+        <!-- Direct Click-to-Call Phone -->
+        <a
+          href="tel:+919745551513"
+          class="hidden xl:inline-flex items-center gap-2 text-sm font-semibold text-content-secondary hover:text-brand-700 py-2 px-3 rounded-lg focus-visible:ring-2 focus-visible:ring-brand-600 transition-colors min-h-touch"
+          aria-label="Call 99COMLABS at +91 9745551513"
+        >
+          <svg class="w-4 h-4 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>+91 9745551513</span>
+        </a>
+
+        <!-- Primary Quote Conversion CTA -->
+        <a
+          href="/contact/"
+          class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 active:bg-brand-900 rounded-lg shadow-sm hover:shadow transition-all duration-150 focus-visible:ring-4 focus-visible:ring-brand-400 focus-visible:ring-offset-2 min-h-touch"
+        >
+          Get a Free Quote
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button (Touch Target >= 44x44px) -->
+      <button
+        type="button"
+        id="mobile-nav-toggle"
+        class="lg:hidden inline-flex items-center justify-center p-2.5 rounded-lg text-content-secondary hover:text-content-primary hover:bg-surface-subtle focus-visible:ring-2 focus-visible:ring-brand-600 min-h-touch min-w-touch"
+        aria-expanded="false"
+        aria-controls="mobile-nav-menu"
+        aria-label="Toggle navigation menu"
+      >
+        <!-- Hamburger Icon (Open state) -->
+        <svg id="hamburger-icon" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <!-- Close Icon (Collapsed state) -->
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile Collapsible Navigation Menu -->
+  <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-line-light bg-surface-light px-4 pt-3 pb-6 space-y-1 shadow-lg">
+    {navLinks.map((link) => {
+      const active = isLinkActive(link.href);
+      return (
+        <a
+          href={link.href}
+          aria-current={active ? 'page' : undefined}
+          class={`flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium min-h-touch ${
+            active
+              ? 'text-brand-700 bg-brand-50 font-semibold'
+              : 'text-content-secondary hover:text-brand-700 hover:bg-surface-subtle'
+          }`}
+        >
+          <span>{link.name}</span>
+          {link.isSpecial && (
+            <span class="px-2 py-0.5 text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 rounded">
+              Helpdesk
+            </span>
+          )}
+        </a>
+      );
+    })}
+
+    <!-- Mobile Conversion Cluster -->
+    <div class="pt-4 mt-2 border-t border-line-light space-y-3">
+      <a
+        href="tel:+919745551513"
+        class="flex items-center justify-center gap-2.5 w-full py-3 px-4 rounded-lg border border-line-medium text-content-primary font-semibold text-base min-h-touch hover:bg-surface-subtle"
+        aria-label="Call 99COMLABS at +91 9745551513"
+      >
+        <svg class="w-5 h-5 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        <span>Call: +91 9745551513</span>
+      </a>
+
+      <a
+        href="/contact/"
+        class="flex items-center justify-center w-full py-3 px-4 rounded-lg bg-brand-700 hover:bg-brand-800 text-white font-semibold text-base min-h-touch shadow-sm"
+      >
+        Get a Free Quote
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Zero-dependency Accessible Mobile Toggle Script -->
+<script is:inline>
+  (function () {
+    const toggleBtn = document.getElementById('mobile-nav-toggle');
+    const menu = document.getElementById('mobile-nav-menu');
+    const hamburger = document.getElementById('hamburger-icon');
+    const close = document.getElementById('close-icon');
+
+    if (!toggleBtn || !menu) return;
+
+    toggleBtn.addEventListener('click', function () {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+      menu.classList.toggle('hidden');
+      if (hamburger && close) {
+        hamburger.classList.toggle('hidden');
+        close.classList.toggle('hidden');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+        if (hamburger && close) {
+          hamburger.classList.remove('hidden');
+          close.classList.add('hidden');
+        }
+        toggleBtn.focus();
+      }
+    });
+  })();
+</script>
+

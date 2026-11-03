@@ -1,0 +1,382 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "About 99COMLABS — Engineering Ethos & Story";
+const pageDescription = "Learn about 99COMLABS: an engineering lab in Kerala, India (PIN 676304) delivering 100% code ownership, zero license lock-in, and physical plus cloud systems.";
+const breadcrumbs = [{ name: 'About', url: '/about/' }];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs}>
+  <!-- JSON-LD Structured Data: BreadcrumbList & AboutPage / LocalBusiness -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://99comlabs.co.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://99comlabs.co.in/about/"
+          }
+        ]
+      },
+      {
+        "@type": "AboutPage",
+        "name": "About 99COMLABS — Engineering Ethos & Principles",
+        "description": pageDescription,
+        "url": "https://99comlabs.co.in/about/",
+        "mainEntity": {
+          "@type": "LocalBusiness",
+          "name": "99COMLABS",
+          "telephone": "+91 9745551513",
+          "email": "connect@99comlabs.co.in",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "[CONFIRM STREET ADDRESS]",
+            "addressLocality": "Kottakkal",
+            "addressRegion": "Kerala",
+            "postalCode": "676304",
+            "addressCountry": "IN"
+          }
+        }
+      }
+    ]
+  })} />
+
+  <!-- Hero Section with 5-Second Clarity & Zero Jargon -->
+  <section class="py-14 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-xs font-semibold text-brand-700 mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          Engineering Ethos • Kerala, India (PIN 676304)
+        </div>
+
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary mb-6 leading-tight">
+          Engineering practical software, hardware, and cloud systems.
+        </h1>
+
+        <p class="text-base sm:text-lg text-content-secondary leading-relaxed mb-8">
+          99COMLABS is an independent technology and innovation lab based in Kerala, India. We build dependable digital products and smart physical electronics for growing businesses—delivering complete transparency, zero vendor lock-in, and 100% client code ownership.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg shadow-sm hover:shadow transition-all duration-150 min-h-touch focus-visible:ring-4 focus-visible:ring-brand-400"
+          >
+            Discuss Your Project
+          </a>
+          <a
+            href="tel:+919745551513"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-content-secondary hover:text-brand-700 bg-surface-muted hover:bg-surface-subtle border border-line-light rounded-lg transition-colors min-h-touch"
+            aria-label="Call 99COMLABS directly at +91 9745551513"
+          >
+            <svg class="w-5 h-5 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span>Direct Call: +91 9745551513</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kerala Roots Section -->
+  <section class="py-14 sm:py-18 bg-surface-muted border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-700">
+            Regional Heritage & Commitment
+          </span>
+          <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary">
+            Rooted in Kerala, Building for Growing Enterprises
+          </h2>
+          <p class="text-base text-content-secondary leading-relaxed">
+            Headquartered in Kottakkal, Malappuram District, Kerala (PIN 676304), 99COMLABS was founded on a simple observation: modern businesses need real engineering talent that understands their local operational realities, not corporate agencies selling cookie-cutter templates with hidden monthly fees.
+          </p>
+          <p class="text-base text-content-secondary leading-relaxed">
+            From regional wholesale merchants and healthcare providers to agricultural processing facilities and technology startups across India, we deliver technology engineered for resilience. We speak plain English, respect your operational timelines, and stand firmly behind the systems we deliver.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 bg-surface-card p-6 sm:p-8 rounded-2xl border border-line-light shadow-card space-y-4">
+          <div class="flex items-center gap-3 pb-4 border-b border-line-light">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+              IN
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-content-primary text-base">
+                Operational Base
+              </h3>
+              <p class="text-xs text-content-muted">
+                Kerala, India — Postal PIN 676304
+              </p>
+            </div>
+          </div>
+          <div class="space-y-3 text-sm text-content-secondary">
+            <div class="flex justify-between py-1 border-b border-line-light">
+              <span class="text-content-muted">Location:</span>
+              <span class="font-medium text-content-primary">Kottakkal, Malappuram</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-line-light">
+              <span class="text-content-muted">Postal PIN:</span>
+              <span class="font-mono font-semibold text-emerald-700">676304</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-line-light">
+              <span class="text-content-muted">Phone / WhatsApp:</span>
+              <a href="tel:+919745551513" class="font-semibold text-brand-700 hover:underline">+91 9745551513</a>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-content-muted">General Email:</span>
+              <a href="mailto:connect@99comlabs.co.in" class="font-medium text-brand-700 hover:underline">connect@99comlabs.co.in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Three Core Principles Section -->
+  <section class="py-16 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-700">
+          Our Working Philosophy
+        </span>
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mt-2 mb-4">
+          Three Non-Negotiable Engineering Principles
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed">
+          Technology should empower your business, not trap it. Every system we build adheres strictly to these three principles:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Principle 1 -->
+        <div class="bg-surface-card p-6 sm:p-8 rounded-2xl border border-line-light shadow-card hover:shadow-card-hover transition-all">
+          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center font-heading font-bold text-xl mb-6">
+            01
+          </div>
+          <h3 class="font-heading text-xl font-bold text-content-primary mb-3">
+            100% Code & Asset Ownership
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed mb-4">
+            When we complete your project, you own every single line of code, database schema, design asset, and build artifact. No hostage software, no perpetual agency royalties, and no vendor lock-in.
+          </p>
+          <div class="text-xs font-semibold text-brand-700 bg-brand-50 p-2.5 rounded-lg border border-brand-200">
+            ✓ Complete intellectual property handover
+          </div>
+        </div>
+
+        <!-- Principle 2 -->
+        <div class="bg-surface-card p-6 sm:p-8 rounded-2xl border border-line-light shadow-card hover:shadow-card-hover transition-all">
+          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center font-heading font-bold text-xl mb-6">
+            02
+          </div>
+          <h3 class="font-heading text-xl font-bold text-content-primary mb-3">
+            Zero License Lock-In & Open Tech
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed mb-4">
+            We build exclusively on battle-tested open standards and proven technologies (Linux, Node.js, SQLite, PostgreSQL, Flutter, Docker). We never force you into closed proprietary systems that charge recurring per-user fees.
+          </p>
+          <div class="text-xs font-semibold text-brand-700 bg-brand-50 p-2.5 rounded-lg border border-brand-200">
+            ✓ Zero recurring per-seat subscription tolls
+          </div>
+        </div>
+
+        <!-- Principle 3 -->
+        <div class="bg-surface-card p-6 sm:p-8 rounded-2xl border border-line-light shadow-card hover:shadow-card-hover transition-all">
+          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center font-heading font-bold text-xl mb-6">
+            03
+          </div>
+          <h3 class="font-heading text-xl font-bold text-content-primary mb-3">
+            Physical + Cloud Integration
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed mb-4">
+            Most software firms cannot handle physical electronics, while hardware makers rarely understand cloud scaling. We bridge both disciplines under one roof—from microcontroller circuit boards to web dashboards.
+          </p>
+          <div class="text-xs font-semibold text-brand-700 bg-brand-50 p-2.5 rounded-lg border border-brand-200">
+            ✓ End-to-end hardware & software accountability
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Engineering Delivery Process -->
+  <section class="py-16 sm:py-20 bg-surface-muted border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-700">
+          Working Methodology
+        </span>
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mt-2 mb-4">
+          How We Deliver Enterprise Technology
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed">
+          Our four-stage engineering methodology guarantees transparency, fixed costs, and predictable project milestones.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-surface-card p-6 rounded-xl border border-line-light shadow-card">
+          <span class="text-3xl font-heading font-bold text-brand-700 block mb-3">01</span>
+          <h3 class="font-heading text-lg font-bold text-content-primary mb-2">
+            Architectural Discovery
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Translating business goals into high-reliability hardware schematics, cloud microservice blueprints, and transparent fixed estimates.
+          </p>
+        </div>
+
+        <div class="bg-surface-card p-6 rounded-xl border border-line-light shadow-card">
+          <span class="text-3xl font-heading font-bold text-brand-700 block mb-3">02</span>
+          <h3 class="font-heading text-lg font-bold text-content-primary mb-2">
+            Precision R&D & Execution
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            From circuit board layouts and firmware to full-stack web platforms, we engineer modular solutions built to last.
+          </p>
+        </div>
+
+        <div class="bg-surface-card p-6 rounded-xl border border-line-light shadow-card">
+          <span class="text-3xl font-heading font-bold text-brand-700 block mb-3">03</span>
+          <h3 class="font-heading text-lg font-bold text-content-primary mb-2">
+            Verification & Stress Testing
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Every system undergoes rigorous hardware stress testing, telemetry validation, and security verification before production deployment.
+          </p>
+        </div>
+
+        <div class="bg-surface-card p-6 rounded-xl border border-line-light shadow-card">
+          <span class="text-3xl font-heading font-bold text-brand-700 block mb-3">04</span>
+          <h3 class="font-heading text-lg font-bold text-content-primary mb-2">
+            Turnkey Launch & Scaling
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Delivering complete source code with automated deployment pipelines, operational documentation, and direct client support desk access.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Honest Team & Lab People Section (Strict R4 Compliance) -->
+  <section id="team" class="py-16 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-700">
+          The Engineering Team
+        </span>
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mt-2 mb-4">
+          The People Behind the Code
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed">
+          We believe in honest engineering without pretense. We refuse to display fake stock photos of corporate models or invent fictitious biographies. Our lab is powered by dedicated software engineers, hardware designers, and systems architects based in Kerala.
+        </p>
+      </div>
+
+      <!-- Honest Placeholder Block (Strict R4 Requirement) -->
+      <div class="bg-surface-muted border-2 border-dashed border-line-medium rounded-2xl p-8 sm:p-12 text-center max-w-3xl mx-auto">
+        <div class="w-14 h-14 rounded-full bg-brand-50 text-brand-700 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        
+        <h3 class="font-mono font-bold text-base sm:text-lg text-content-primary mb-2">
+          [ADD REAL TEAM MEMBER BIOS & PHOTOS]
+        </h3>
+        
+        <p class="text-sm text-content-secondary max-w-xl mx-auto leading-relaxed mb-6">
+          Engineering profiles, founder biographies, and verified photographs are currently being compiled and will be published following team review. To speak directly with the engineering lead handling your domain, contact our lab directly.
+        </p>
+
+        <div class="inline-flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
+          <a
+            href="tel:+919745551513"
+            class="px-4 py-2.5 rounded-lg bg-surface-card border border-line-light text-content-primary hover:text-brand-700 transition-colors inline-flex items-center gap-1.5 min-h-touch"
+          >
+            <span>Direct Phone:</span>
+            <strong>+91 9745551513</strong>
+          </a>
+          <a
+            href="mailto:connect@99comlabs.co.in"
+            class="px-4 py-2.5 rounded-lg bg-surface-card border border-line-light text-content-primary hover:text-brand-700 transition-colors inline-flex items-center gap-1.5 min-h-touch"
+          >
+            <span>Email:</span>
+            <strong>connect@99comlabs.co.in</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Helpdesk Integration Banner -->
+  <section class="py-12 bg-surface-muted border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-card">
+        <div class="space-y-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">
+            Long-Term Technical Partnership
+          </span>
+          <h2 class="font-heading text-2xl font-bold text-white">
+            Dedicated Client Engineering Helpdesk
+          </h2>
+          <p class="text-sm text-slate-300 max-w-xl">
+            We don't disappear after launch day. Access our preserved support portal at /support/ to submit tickets (#99LAB-XXXXX), review troubleshooting FAQs, or request scope enhancements.
+          </p>
+        </div>
+        <a
+          href="/support/"
+          class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-slate-900 bg-white hover:bg-slate-100 rounded-lg transition-colors whitespace-nowrap min-h-touch"
+        >
+          Access Client Helpdesk
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Call to Action -->
+  <section class="py-16 sm:py-20 bg-surface-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto space-y-6">
+        <h2 class="font-heading text-3xl sm:text-4xl font-bold text-content-primary tracking-tight">
+          Ready to work with engineers who put your business first?
+        </h2>
+        <p class="text-base sm:text-lg text-content-secondary leading-relaxed">
+          Let’s discuss your software platform, IoT hardware, or cloud hosting needs without sales pressure or confusing jargon.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <a
+            href="/contact/"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg shadow-sm hover:shadow transition-all duration-150 min-h-touch focus-visible:ring-4 focus-visible:ring-brand-400"
+          >
+            Get a Free Quote in 24 Hours
+          </a>
+          <a
+            href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20would%20like%20to%20discuss%20a%20project%20scope."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-content-primary bg-surface-muted hover:bg-surface-subtle border border-line-light rounded-lg transition-colors min-h-touch"
+          >
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            <span>Chat on WhatsApp (+91 9745551513)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

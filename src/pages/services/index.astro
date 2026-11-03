@@ -1,0 +1,437 @@
+---
+// src/pages/services/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "Engineering Services & Technology Solutions";
+const pageDescription = "Explore 99COMLABS engineering services in Kerala, India: custom software & mobile apps, IoT hardware, secure cloud hosting, and local digital growth.";
+
+const breadcrumbs = [
+  { name: 'Services', url: '/services/' }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs}>
+  <!-- JSON-LD Structured Data: Service & BreadcrumbList -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Engineering Services & Technology Solutions",
+    "description": "Comprehensive engineering services by 99COMLABS including custom software development, IoT hardware engineering, managed cloud hosting, and local digital growth.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "99COMLABS",
+      "telephone": "+91 9745551513",
+      "url": "https://99comlabs.co.in/",
+      "address": {
+        "@type": "PostalAddress",
+        "postalCode": "676304",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      }
+    }
+  })} />
+
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://99comlabs.co.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://99comlabs.co.in/services/"
+      }
+    ]
+  })} />
+
+  <!-- Hero Section -->
+  <section class="py-16 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-xs font-semibold text-brand-700 mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand-600" aria-hidden="true"></span>
+          Integrated Engineering Services • Kerala, India
+        </div>
+
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary mb-6 leading-tight">
+          Engineering Services Built for Practical Business Growth
+        </h1>
+
+        <p class="text-lg sm:text-xl text-content-secondary leading-relaxed mb-8">
+          We combine software development, physical IoT electronics, and high-speed cloud infrastructure under one roof in Kerala, India. Explore our four specialized disciplines below to find the right solution for your business.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg shadow-sm transition-colors min-h-touch"
+          >
+            Get a Free Project Quote
+          </a>
+          <a
+            href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20would%20like%20to%20discuss%20engineering%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-whatsapp-hover hover:text-white hover:bg-whatsapp-base border border-whatsapp-base/30 rounded-lg transition-colors min-h-touch"
+          >
+            <svg class="w-4 h-4 fill-current text-whatsapp-bright" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.312l-.727 2.654 2.721-.713c.978.534 1.773.816 2.748.816 3.18 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.769-5.766-5.769zm10.165 5.767c0 5.619-4.572 10.191-10.193 10.191-1.774 0-3.447-.461-4.908-1.265l-5.637 1.479 1.507-5.504c-.893-1.522-1.393-3.292-1.393-5.176 0-5.621 4.573-10.193 10.194-10.193 5.621 0 10.193 4.572 10.193 10.192z" />
+            </svg>
+            <span>Discuss on WhatsApp (+91 9745551513)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Directory of the 4 Engineering Domains -->
+  <section class="py-16 sm:py-20 bg-surface-muted border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Domain 1: Web & Mobile Apps -->
+      <div class="bg-surface-card rounded-2xl border border-line-light p-8 lg:p-10 shadow-card">
+        <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+          <div class="max-w-2xl">
+            <span class="inline-flex items-center px-3 py-1 rounded text-xs font-mono font-semibold bg-blue-50 text-brand-700 border border-blue-200 mb-4">
+              Discipline 01
+            </span>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-4">
+              Custom Web & Mobile Application Development
+            </h2>
+            <p class="text-base text-content-secondary leading-relaxed mb-6">
+              Eliminate manual paperwork, disconnected spreadsheets, and expensive software subscriptions with web portals and mobile applications built specifically around your business operations.
+            </p>
+            <div class="mb-6">
+              <h3 class="font-heading text-sm font-semibold text-content-primary uppercase tracking-wider mb-3">
+                Key Deliverables & Capabilities
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-content-secondary">
+                <div class="flex items-start gap-2">
+                  <span class="text-brand-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Customer self-service & booking portals</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-brand-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Android & iOS mobile applications</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-brand-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Offline-first billing & POS systems</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-brand-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Centralized management dashboards</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-80 bg-surface-muted p-6 rounded-xl border border-line-light flex flex-col justify-between shrink-0">
+            <div>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Ideal For</div>
+              <p class="text-sm text-content-primary mb-4 font-medium">
+                Retail stores, clinics, logistics providers, and growing businesses needing custom workflows.
+              </p>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Typical Timeline</div>
+              <p class="text-sm text-content-primary font-medium mb-6">
+                2 to 6 weeks from approval to launch.
+              </p>
+            </div>
+            <a
+              href="/services/web-and-mobile-apps/"
+              class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors min-h-touch"
+            >
+              View Web & Mobile App Details &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 2: IoT & Electronics -->
+      <div class="bg-surface-card rounded-2xl border border-line-light p-8 lg:p-10 shadow-card">
+        <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+          <div class="max-w-2xl">
+            <span class="inline-flex items-center px-3 py-1 rounded text-xs font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 mb-4">
+              Discipline 02
+            </span>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-4">
+              Embedded IoT, Electronics & Hardware Engineering
+            </h2>
+            <p class="text-base text-content-secondary leading-relaxed mb-6">
+              Connect physical machines and industrial sensors directly to the cloud. We design custom circuit boards, program microchips, and deliver real-time equipment telemetry to prevent unexpected downtime.
+            </p>
+            <div class="mb-6">
+              <h3 class="font-heading text-sm font-semibold text-content-primary uppercase tracking-wider mb-3">
+                Key Deliverables & Capabilities
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-content-secondary">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Custom circuit board (PCB) design & assembly</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Live sensor telemetry (temperature, vibration, power)</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Smart motor automation & relay controllers</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Cloud dashboards with instant WhatsApp/SMS alerts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-80 bg-surface-muted p-6 rounded-xl border border-line-light flex flex-col justify-between shrink-0">
+            <div>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Ideal For</div>
+              <p class="text-sm text-content-primary mb-4 font-medium">
+                Cold storage, commercial agriculture, manufacturing, solar energy, and hardware innovators.
+              </p>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Typical Timeline</div>
+              <p class="text-sm text-content-primary font-medium mb-6">
+                3 to 8 weeks for working field prototype.
+              </p>
+            </div>
+            <a
+              href="/services/iot-and-electronics/"
+              class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors min-h-touch"
+            >
+              View IoT & Hardware Details &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 3: Cloud & Security -->
+      <div class="bg-surface-card rounded-2xl border border-line-light p-8 lg:p-10 shadow-card">
+        <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+          <div class="max-w-2xl">
+            <span class="inline-flex items-center px-3 py-1 rounded text-xs font-mono font-semibold bg-purple-50 text-purple-700 border border-purple-200 mb-4">
+              Discipline 03
+            </span>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-4">
+              Managed Cloud Hosting, Disaster Recovery & Security
+            </h2>
+            <p class="text-base text-content-secondary leading-relaxed mb-6">
+              Keep your website and business applications running 24/7 without crashes or sluggish load speeds. We configure dedicated cloud servers, automated off-site backups, and cyber security protection.
+            </p>
+            <div class="mb-6">
+              <h3 class="font-heading text-sm font-semibold text-content-primary uppercase tracking-wider mb-3">
+                Key Deliverables & Capabilities
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-content-secondary">
+                <div class="flex items-start gap-2">
+                  <span class="text-purple-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Sub-second cloud server deployment (AWS, DigitalOcean)</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-purple-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Automated daily off-site encrypted backups</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-purple-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Firewall lockdown, brute-force defense & free SSL</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-purple-600 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>24/7 automated uptime monitoring & engineer response</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-80 bg-surface-muted p-6 rounded-xl border border-line-light flex flex-col justify-between shrink-0">
+            <div>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Ideal For</div>
+              <p class="text-sm text-content-primary mb-4 font-medium">
+                Growing companies running customer-facing web apps, e-commerce stores, or business databases.
+              </p>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Typical Timeline</div>
+              <p class="text-sm text-content-primary font-medium mb-6">
+                24 to 72 hours for seamless zero-downtime migration.
+              </p>
+            </div>
+            <a
+              href="/services/cloud-hosting-and-security/"
+              class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors min-h-touch"
+            >
+              View Cloud & Security Details &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 4: Digital Growth -->
+      <div class="bg-surface-card rounded-2xl border border-line-light p-8 lg:p-10 shadow-card">
+        <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+          <div class="max-w-2xl">
+            <span class="inline-flex items-center px-3 py-1 rounded text-xs font-mono font-semibold bg-amber-50 text-amber-800 border border-amber-200 mb-4">
+              Discipline 04
+            </span>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-4">
+              Digital Growth, Local SEO & Brand Identity
+            </h2>
+            <p class="text-base text-content-secondary leading-relaxed mb-6">
+              Make sure potential clients searching for your services in Kerala and across India find you before your competitors. We optimize your website code, Google Search presence, and conversion layout.
+            </p>
+            <div class="mb-6">
+              <h3 class="font-heading text-sm font-semibold text-content-primary uppercase tracking-wider mb-3">
+                Key Deliverables & Capabilities
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-content-secondary">
+                <div class="flex items-start gap-2">
+                  <span class="text-amber-700 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Kerala & national local Google Search optimization (SEO)</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-amber-700 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>High-converting landing pages with WhatsApp anchors</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-amber-700 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Professional brand identity, modern logos & typography</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-amber-700 font-bold" aria-hidden="true">&#10003;</span>
+                  <span>Call & WhatsApp conversion telemetry tracking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-80 bg-surface-muted p-6 rounded-xl border border-line-light flex flex-col justify-between shrink-0">
+            <div>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Ideal For</div>
+              <p class="text-sm text-content-primary mb-4 font-medium">
+                Regional service providers, manufacturers, healthcare clinics, and B2B vendors wanting more inbound inquiries.
+              </p>
+              <div class="text-xs font-semibold text-content-muted uppercase tracking-wider mb-2">Typical Timeline</div>
+              <p class="text-sm text-content-primary font-medium mb-6">
+                2 to 4 weeks for brand assets; 4 to 8 weeks for local SEO momentum.
+              </p>
+            </div>
+            <a
+              href="/services/digital-growth-and-branding/"
+              class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors min-h-touch"
+            >
+              View Digital Growth Details &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Ethos: Why Work With 99COMLABS -->
+  <section class="py-16 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-3">
+          Why Businesses Trust 99COMLABS
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed">
+          We operate as an engineering lab, not an agency with sales middlemen. Here are the core principles guiding every project we deliver.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center font-bold mb-4">
+            01
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            100% Code Ownership
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            You receive all source code, database architectures, and design files upon completion. Zero recurring proprietary software lock-ins.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center font-bold mb-4">
+            02
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            Hardware & Software Together
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            We build both physical electronic circuit boards and cloud applications under one roof. No third-party finger-pointing when connecting devices.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center font-bold mb-4">
+            03
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            Direct Engineer Access
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            You collaborate directly with the engineers architecting your system. Requirements are understood accurately without communication layers.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center font-bold mb-4">
+            04
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            Transparent Pricing
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Itemized proposals with clear milestone deliverables. You always know exactly what is being built, when it will be delivered, and what it costs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conversion CTA Banner -->
+  <section class="py-16 sm:py-20 bg-surface-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-brand-900 to-slate-900 text-white rounded-2xl p-8 sm:p-12 flex flex-col lg:flex-row lg:items-center justify-between gap-8 shadow-xl">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold tracking-wider text-brand-300 uppercase mb-2 block">
+            Start Your Consultation
+          </span>
+          <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white mb-3">
+            Unsure Which Engineering Service Fits Your Project?
+          </h2>
+          <p class="text-base text-slate-200 leading-relaxed mb-4">
+            Schedule a free 20-minute consultation with our engineering team in Kerala. We will examine your requirements and propose the most cost-effective technical path.
+          </p>
+          <div class="flex items-center gap-4 text-xs text-slate-300">
+            <span>Direct Hotline: <strong class="text-white">+91 9745551513</strong></span>
+            <span>•</span>
+            <span>Email: <strong class="text-white">connect@99comlabs.co.in</strong></span>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-slate-900 bg-white hover:bg-slate-100 rounded-lg transition-colors whitespace-nowrap min-h-touch"
+          >
+            Request a Free Quote
+          </a>
+          <a
+            href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20would%20like%20to%20discuss%20my%20project%20options."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-base font-semibold text-white bg-whatsapp-base hover:bg-whatsapp-hover rounded-lg transition-colors whitespace-nowrap min-h-touch"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.312l-.727 2.654 2.721-.713c.978.534 1.773.816 2.748.816 3.18 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.769-5.766-5.769zm10.165 5.767c0 5.619-4.572 10.191-10.193 10.191-1.774 0-3.447-.461-4.908-1.265l-5.637 1.479 1.507-5.504c-.893-1.522-1.393-3.292-1.393-5.176 0-5.621 4.573-10.193 10.194-10.193 5.621 0 10.193 4.572 10.193 10.192z" />
+            </svg>
+            <span>WhatsApp Us</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

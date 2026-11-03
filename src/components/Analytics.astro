@@ -1,0 +1,147 @@
+---
+// src/components/Analytics.astro
+/**
+ * Analytics & Telemetry Component — 99COMLABS
+ * 
+ * Part of Milestone 3: Feature 29 (Analytics & Telemetry Hooks)
+ * Features:
+ * 1. Google Analytics 4 (GA4) async snippet with zero performance impact.
+ * 2. Standardized measurement ID placeholder: [ADD GA4 MEASUREMENT ID] (e.g. G-XXXXXXXXXX).
+ * 3. Google Search Console (GSC) verification placeholder: [ADD GSC VERIFICATION TOKEN].
+ * 4. Facebook domain verification token: twact0asymciyayw71xyh71f2r8ei8.
+ * 5. High-performance, event-delegated conversion tracking:
+ *    - Click to Call: gtag('event', 'click_to_call', { phone_number: '+919745551513' })
+ *    - WhatsApp Click: gtag('event', 'whatsapp_click', { link: 'wa.me/919745551513' })
+ *    - CTA Quote Button Click: gtag('event', 'cta_quote_click', { button_text: 'Get a Free Quote' })
+ *    - Contact Form Submit: gtag('event', 'generate_lead', { form_name: 'contact_form' })
+ * 6. Non-blocking, passive event delegation with fallback dataLayer queuing.
+ */
+
+export interface Props {
+  /**
+   * Google Analytics 4 Measurement ID.
+   * Default placeholder to be updated by site owner: [ADD GA4 MEASUREMENT ID]
+   */
+  measurementId?: string;
+  /**
+   * Google Search Console site verification token.
+   * Default placeholder to be updated by site owner: [ADD GSC VERIFICATION TOKEN]
+   */
+  gscToken?: string;
+  /**
+   * Facebook / Meta business domain verification token.
+   * Verified token preserved from existing 99COMLABS domain configuration.
+   */
+  facebookToken?: string;
+}
+
+const {
+  measurementId = '[ADD GA4 MEASUREMENT ID]',
+  gscToken = '[ADD GSC VERIFICATION TOKEN]',
+  facebookToken = 'twact0asymciyayw71xyh71f2r8ei8'
+} = Astro.props;
+---
+
+<!-- ======================================================================= -->
+<!-- Search Engine & Social Domain Verification Tokens                        -->
+<!-- ======================================================================= -->
+<meta name="google-site-verification" content={gscToken} />
+<meta name="facebook-domain-verification" content={facebookToken} />
+
+<!-- ======================================================================= -->
+<!-- Google Analytics 4 (gtag.js) — Async, Zero Render-Blocking Overhead     -->
+<!-- ======================================================================= -->
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+<script is:inline set:html={`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${measurementId}', {
+    anonymize_ip: true,
+    send_page_view: true
+  });
+`} />
+
+<!-- ======================================================================= -->
+<!-- Automated Conversion Telemetry Hooks (Client Event Delegation)           -->
+<!-- ======================================================================= -->
+<script is:inline>
+  (function initAnalyticsTelemetry() {
+    // Resilient event dispatcher: handles gtag, dataLayer fallback, or adblockers
+    function dispatchConversionEvent(eventName, eventParams) {
+      try {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', eventName, eventParams);
+        } else {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: eventName,
+            ...eventParams
+          });
+        }
+      } catch (err) {
+        // Prevent telemetry errors from ever disrupting user interactions
+        console.debug('[Telemetry Debug]', eventName, eventParams);
+      }
+    }
+
+    // Passive global click listener for Phone, WhatsApp, and CTA buttons
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      if (!target || typeof target.closest !== 'function') return;
+
+      // 1. Phone Click-to-Call Telemetry
+      var phoneLink = target.closest('a[href^="tel:"]');
+      if (phoneLink) {
+        var rawPhone = phoneLink.getAttribute('href') || '';
+        var cleanPhone = rawPhone.replace(/^tel:/, '').trim() || '+919745551513';
+        dispatchConversionEvent('click_to_call', {
+          phone_number: cleanPhone
+        });
+        return;
+      }
+
+      // 2. WhatsApp Click Telemetry
+      var waLink = target.closest('a[href*="wa.me"], a[href*="whatsapp.com"]');
+      if (waLink) {
+        dispatchConversionEvent('whatsapp_click', {
+          link: 'wa.me/919745551513'
+        });
+        return;
+      }
+
+      // 3. CTA Quote Button Click Telemetry
+      var ctaLink = target.closest('a[href*="/contact/"], a[href*="#quote-form"], button[data-analytics="cta_quote"], a[data-analytics="cta_quote"]');
+      if (ctaLink) {
+        var buttonText = (ctaLink.textContent || '').trim().replace(/\s+/g, ' ') || 'Get a Free Quote';
+        dispatchConversionEvent('cta_quote_click', {
+          button_text: buttonText
+        });
+        return;
+      }
+    }, { passive: true });
+
+    // 4. Contact Form Submission Telemetry
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      if (!form) return;
+
+      // Check if form is contact inquiry or support ticket form
+      var isContactForm = form.id === 'contact-inquiry-form' || 
+                          form.id === 'contact-form' || 
+                          form.matches('form[data-form="contact"]') ||
+                          (form.action && form.action.indexOf('formsubmit.co') !== -1);
+
+      if (isContactForm) {
+        // Guard against duplicate event dispatch if component script already sent it
+        if (form.getAttribute('data-telemetry-fired') === 'true') return;
+        
+        var formName = form.getAttribute('data-form-name') || form.id || 'contact_form';
+        dispatchConversionEvent('generate_lead', {
+          form_name: formName
+        });
+        form.setAttribute('data-telemetry-fired', 'true');
+      }
+    }, { passive: true });
+  })();
+</script>

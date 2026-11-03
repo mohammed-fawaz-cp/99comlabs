@@ -1,0 +1,124 @@
+---
+// src/layouts/BaseLayout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import Breadcrumb, { type BreadcrumbItem } from '../components/Breadcrumb.astro';
+import Analytics from '../components/Analytics.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  breadcrumbs?: BreadcrumbItem[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage = 'https://99comlabs.co.in/images/og-share.png',
+  ogType = 'website',
+  breadcrumbs = [],
+  noindex = false,
+} = Astro.props;
+
+// Format title ensuring it stays strictly under 60 characters
+let formattedTitle = title;
+if (!formattedTitle.includes('99COMLABS')) {
+  if (formattedTitle.length + 12 <= 60) {
+    formattedTitle = `${formattedTitle} | 99COMLABS`;
+  }
+}
+
+// Guarantee canonical URL has trailing slash and points to production domain
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://99comlabs.co.in';
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = canonicalUrl || `${siteUrl}${pathname}`;
+
+// Check if this page is a 404 error page or flagged with noindex
+const isErrorOrNoindex = noindex || pathname === '/404/' || pathname === '/404.html';
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1d4ed8" />
+    
+    <!-- Title and Description (Strict SEO limits: Title <60 chars, Desc <160 chars) -->
+    <title>{formattedTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Canonical URL with trailing slash (suppressed on 404 and noindex error pages) -->
+    {!isErrorOrNoindex && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:site_name" content="99COMLABS" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={formattedTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="99COMLABS - Software, IoT & Cloud Engineering Lab" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={formattedTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="99COMLABS - Software, IoT & Cloud Engineering Lab" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Analytics, Telemetry & Verification Hooks (GA4, GSC, Meta) -->
+    <Analytics />
+
+    <!-- Google Fonts Preconnect & Swap (Maximum 2 font families: Space Grotesk + Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Page Specific Structured Data (JSON-LD) or extra head items -->
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-surface-light text-content-primary font-sans text-base leading-relaxed antialiased selection:bg-brand-100 selection:text-brand-900">
+    <!-- Accessible Skip-to-Content Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-brand-700 focus:text-white focus:font-semibold focus:rounded-lg focus:shadow-xl focus:outline-none focus:ring-4 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-white transition-all duration-150 min-h-touch flex items-center"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header Landmark (role="banner") -->
+    <Header />
+
+    <!-- Breadcrumbs Component (Conditional on presence of breadcrumbs) -->
+    {breadcrumbs.length > 0 && <Breadcrumb items={breadcrumbs} />}
+
+    <!-- Main Content Landmark (role="main") -->
+    <main id="main-content" class="flex-grow focus:outline-none" tabindex="-1">
+      <slot />
+    </main>
+
+    <!-- Footer Landmark (role="contentinfo") -->
+    <Footer />
+
+    <!-- Persistent Floating WhatsApp Conversion CTA -->
+    <WhatsAppFloat />
+  </body>
+</html>

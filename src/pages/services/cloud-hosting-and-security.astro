@@ -1,0 +1,347 @@
+---
+// src/pages/services/cloud-hosting-and-security.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "Cloud Hosting & Security Kerala";
+const pageDescription = "High-speed cloud hosting, automated backups, and 24/7 security management in Kerala, India. Zero downtime website migrations. Get a free quote today.";
+
+const breadcrumbs = [
+  { name: 'Services', url: '/services/' },
+  { name: 'Cloud & Security', url: '/services/cloud-hosting-and-security/' }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs}>
+  <!-- JSON-LD Structured Data: Service, FAQPage & BreadcrumbList -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Cloud Hosting, Infrastructure and Cyber Security Management",
+    "description": "High-speed cloud server deployment, automated daily backups, zero-downtime website migration, and cyber security hardening by 99COMLABS in Kerala, India.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "99COMLABS",
+      "telephone": "+91 9745551513",
+      "url": "https://99comlabs.co.in/",
+      "address": {
+        "@type": "PostalAddress",
+        "postalCode": "676304",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      }
+    }
+  })} />
+
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can you migrate our existing website without any downtime or email disruptions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We perform seamless migrations by staging your site on the new cloud server first, verifying all functionality, and switching DNS records without causing any interruption to your live website or business emails."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much faster will our website load after moving to your cloud hosting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most clients experience a 50% to 70% decrease in page loading times. By utilizing dedicated CPU cores, solid-state storage (SSD), and modern compression, pages typically load in under 1.5 seconds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if our website files or database are accidentally damaged or deleted?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because we maintain automated off-site backups taken every 24 hours, our engineering team can roll back your website or database to a clean, working snapshot within minutes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are SSL security certificates included with your hosting service?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We install and configure modern SSL certificates on all domains and subdomains at no extra charge, complete with automatic renewal so your website never displays insecure warnings."
+        }
+      }
+    ]
+  })} />
+
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://99comlabs.co.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://99comlabs.co.in/services/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Cloud & Security",
+        "item": "https://99comlabs.co.in/services/cloud-hosting-and-security/"
+      }
+    ]
+  })} />
+
+  <!-- Hero Section -->
+  <section class="py-16 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-semibold text-purple-800 mb-6">
+          <span class="w-2 h-2 rounded-full bg-purple-600" aria-hidden="true"></span>
+          Infrastructure & Cloud Systems • Kerala, India
+        </span>
+
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary mb-6 leading-tight">
+          Fast Cloud Hosting, Automated Backups & 24/7 Security
+        </h1>
+
+        <p class="text-lg sm:text-xl text-content-secondary leading-relaxed mb-8">
+          Keep your website and business applications running 24 hours a day without crashes, slow loading speeds, or security threats. 99COMLABS configures and manages reliable cloud servers, automated backups, and security defenses so your business never goes offline.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg shadow-sm transition-colors min-h-touch"
+          >
+            Get a Free Cloud Quote
+          </a>
+          <a
+            href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20want%20to%20discuss%20cloud%20hosting%20or%20website%20migration."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-whatsapp-hover hover:text-white hover:bg-whatsapp-base border border-whatsapp-base/30 rounded-lg transition-colors min-h-touch"
+          >
+            <svg class="w-4 h-4 fill-current text-whatsapp-bright" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.312l-.727 2.654 2.721-.713c.978.534 1.773.816 2.748.816 3.18 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.769-5.766-5.769zm10.165 5.767c0 5.619-4.572 10.191-10.193 10.191-1.774 0-3.447-.461-4.908-1.265l-5.637 1.479 1.507-5.504c-.893-1.522-1.393-3.292-1.393-5.176 0-5.621 4.573-10.193 10.194-10.193 5.621 0 10.193 4.572 10.193 10.192z" />
+            </svg>
+            <span>Chat on WhatsApp (+91 9745551513)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="py-16 sm:py-20 bg-surface-muted border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-4">
+          Why Cheap Shared Hosting Costs Your Business Dearly
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed mb-4">
+          Budget shared hosting is the hidden reason so many business websites crawl slowly or crash during marketing campaigns. When hundreds of unrelated websites share the same server resources, a traffic spike on someone else's site brings your business to a dead stop.
+        </p>
+        <p class="text-base text-content-secondary leading-relaxed">
+          Even worse, shared servers frequently lack automated off-site backups and active security monitoring. If an outdated script gets hacked or files become corrupted, businesses face days of downtime and the permanent loss of customer inquiries. 99COMLABS isolates your website on fast, dedicated cloud servers with automatic daily backups and continuous security protection.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables Section -->
+  <section class="py-16 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-3">
+          What We Deliver
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed">
+          Robust, managed cloud infrastructure configured for performance, data security, and continuous uptime.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light shadow-card">
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            High-Speed Cloud Hosting
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Dedicated cloud server architecture (AWS, DigitalOcean, Cloudflare) optimized for sub-second page loads that keep mobile customers happy and boost Google rankings.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light shadow-card">
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            Automated Daily Off-Site Backups
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Encrypted, automated daily snapshots stored in independent secure storage locations, allowing full one-click restoration in minutes if an emergency strikes.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light shadow-card">
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            Cyber Security Lockdown & Free SSL
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Comprehensive server hardening, free auto-renewing SSL certificates, automated firewall rules, brute-force defense, and bot blocking.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light shadow-card">
+          <h3 class="font-heading text-lg font-semibold text-content-primary mb-2">
+            24/7 Proactive Server Monitoring
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Automated health probes ping your servers every 60 seconds; our engineers fix resource bottlenecks before your customers ever notice an issue.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Process Section -->
+  <section class="py-16 sm:py-20 bg-surface-muted border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-3">
+          Our 4-Step Cloud Setup Process
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed">
+          We migrate or launch your servers smoothly with zero disruption to daily business operations.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light">
+          <div class="w-8 h-8 rounded-full bg-brand-700 text-white font-bold flex items-center justify-center text-xs mb-3">1</div>
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">Audit & Assessment</h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            We inspect your current website speed, server resource consumption, and security configuration to identify bottlenecks.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light">
+          <div class="w-8 h-8 rounded-full bg-brand-700 text-white font-bold flex items-center justify-center text-xs mb-3">2</div>
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">Cloud Provisioning</h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            We set up modern cloud infrastructure sized perfectly for your traffic volume and operational requirements.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light">
+          <div class="w-8 h-8 rounded-full bg-brand-700 text-white font-bold flex items-center justify-center text-xs mb-3">3</div>
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">Zero-Downtime Migration</h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            We transfer your website files, databases, and emails during off-peak hours, testing every link to ensure zero downtime.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-card rounded-xl border border-line-light">
+          <div class="w-8 h-8 rounded-full bg-brand-700 text-white font-bold flex items-center justify-center text-xs mb-3">4</div>
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">Backups & Monitoring</h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            We activate daily off-site backups, firewall security rules, and continuous uptime monitoring alerts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 sm:py-20 bg-surface-light border-b border-line-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-3">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-base text-content-secondary leading-relaxed">
+          Common questions about cloud hosting, website migrations, backups, and security.
+        </p>
+      </div>
+
+      <div class="max-w-3xl space-y-6">
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">
+            Can you migrate our existing website without any downtime or email disruptions?
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Yes. We perform seamless migrations by staging your site on the new cloud server first, verifying all functionality, and switching DNS records without causing any interruption to your live website or business emails.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">
+            How much faster will our website load after moving to your cloud hosting?
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Most clients experience a 50% to 70% decrease in page loading times. By utilizing dedicated CPU cores, solid-state storage (SSD), and modern compression, pages typically load in under 1.5 seconds.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">
+            What happens if our website files or database are accidentally damaged or deleted?
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Because we maintain automated off-site backups taken every 24 hours, our engineering team can roll back your website or database to a clean, working snapshot within minutes.
+          </p>
+        </div>
+
+        <div class="p-6 bg-surface-muted rounded-xl border border-line-light">
+          <h3 class="font-heading text-base font-semibold text-content-primary mb-2">
+            Are SSL security certificates included with your hosting service?
+          </h3>
+          <p class="text-sm text-content-secondary leading-relaxed">
+            Yes. We install and configure modern SSL certificates on all domains and subdomains at no extra charge, complete with automatic renewal so your website never displays insecure warnings.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Banner -->
+  <section class="py-16 sm:py-20 bg-surface-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-brand-900 to-slate-900 text-white rounded-2xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="space-y-2">
+          <h2 class="font-heading text-2xl font-bold text-white">
+            Ready for Faster, Crash-Proof Hosting?
+          </h2>
+          <p class="text-sm text-slate-200 max-w-xl leading-relaxed">
+            Request a free server audit and migration quote from our engineering team in Kerala. We will assess your existing website speed and explain how to improve reliability within 24 business hours.
+          </p>
+          <div class="pt-2 text-xs text-slate-300">
+            <span>Call directly: <strong class="text-white">+91 9745551513</strong></span>
+            <span> • </span>
+            <span>Email: <strong class="text-white">connect@99comlabs.co.in</strong></span>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-slate-900 bg-white hover:bg-slate-100 rounded-lg transition-colors whitespace-nowrap min-h-touch"
+          >
+            Request Your Cloud Quote
+          </a>
+          <a
+            href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20want%20to%20discuss%20cloud%20hosting%20or%20website%20migration."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-white bg-whatsapp-base hover:bg-whatsapp-hover rounded-lg transition-colors whitespace-nowrap min-h-touch"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.025 3.312l-.727 2.654 2.721-.713c.978.534 1.773.816 2.748.816 3.18 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.769-5.766-5.769zm10.165 5.767c0 5.619-4.572 10.191-10.193 10.191-1.774 0-3.447-.461-4.908-1.265l-5.637 1.479 1.507-5.504c-.893-1.522-1.393-3.292-1.393-5.176 0-5.621 4.573-10.193 10.194-10.193 5.621 0 10.193 4.572 10.193 10.192z" />
+            </svg>
+            <span>WhatsApp Us</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

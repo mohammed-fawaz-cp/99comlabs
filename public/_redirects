@@ -1,0 +1,36 @@
+# ==============================================================================
+# 99COMLABS - Netlify & Cloudflare Pages Redirect Rules
+# Authoritative Domain: https://99comlabs.co.in/
+# ==============================================================================
+
+# 1. Canonical Root and Support Index Redirects (HTTP 301)
+/index.html                                                 /                                                           301!
+/support/index.html                                         /support/                                                   301!
+
+# 2. Support Route Trailing Slash Normalization (HTTP 301)
+/support                                                    /support/                                                   301!
+
+# 3. Legacy Flat HTML URL Redirects to Clean Trailing-Slash Routes (HTTP 301)
+/services.html                                              /services/                                                  301!
+/projects.html                                              /projects/                                                  301!
+/about.html                                                 /about/                                                     301!
+/contact.html                                               /contact/                                                   301!
+/blog.html                                                  /blog/                                                      301!
+/privacy.html                                               /privacy/                                                   301!
+/terms.html                                                 /terms/                                                     301!
+
+# 4. Nested Dedicated Services & Blog .html URL Redirects (HTTP 301)
+/services/web-and-mobile-apps.html                          /services/web-and-mobile-apps/                              301!
+/services/iot-and-electronics.html                          /services/iot-and-electronics/                              301!
+/services/cloud-hosting-and-security.html                   /services/cloud-hosting-and-security/                       301!
+/services/digital-growth-and-branding.html                  /services/digital-growth-and-branding/                      301!
+/blog/custom-website-cost-kerala-2026.html                  /blog/custom-website-cost-kerala-2026/                      301!
+/blog/iot-smart-sensors-cost-reduction-small-business.html  /blog/iot-smart-sensors-cost-reduction-small-business/      301!
+/blog/cloud-hosting-vs-shared-hosting-guide.html            /blog/cloud-hosting-vs-shared-hosting-guide/                301!
+/blog/why-website-not-getting-leads-fixes.html              /blog/why-website-not-getting-leads-fixes/                  301!
+
+# 5. XML Sitemap Aliasing (HTTP 301)
+/sitemap.xml                                                /sitemap-index.xml                                          301
+
+# 6. Custom 404 Error Handler (HTTP 404)
+/*                                                          /404.html                                                   404

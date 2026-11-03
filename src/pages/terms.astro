@@ -1,0 +1,167 @@
+---
+// src/pages/terms.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Terms of Service";
+// BaseLayout appends " | 99COMLABS" -> 16 + 12 = 28 chars (strictly < 60)
+const pageDescription = "Terms of Service for 99COMLABS. Read our terms of website usage, project estimates, code ownership, intellectual property, and Kerala legal jurisdiction.";
+// 157 chars (strictly < 160)
+
+const breadcrumbs = [
+  { name: 'Terms of Service', url: '/terms/' }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs}>
+  <div class="bg-surface-light py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <header class="mb-10 pb-8 border-b border-line-light">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-muted border border-line-light text-xs font-semibold text-content-muted mb-4">
+          <span>Legal Documentation • Last Updated: March 2026</span>
+        </div>
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary mb-4">
+          Terms of Service
+        </h1>
+        <p class="text-base sm:text-lg text-content-secondary leading-relaxed">
+          These Terms of Service govern your access to and use of the 99COMLABS website (<a href="https://99comlabs.co.in/" class="text-brand-700 underline">https://99comlabs.co.in/</a>) and define the standard commercial framework for custom software, IoT engineering, and cloud hosting engagements.
+        </p>
+      </header>
+
+      <!-- Main Legal Content -->
+      <div class="prose prose-slate max-w-none text-content-secondary space-y-8 leading-relaxed">
+        
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            1. Acceptance of Terms
+          </h2>
+          <p>
+            By accessing this website, utilizing our preserved Support Helpdesk (<a href="/support/" class="text-brand-700 underline">/support/</a>), or engaging 99COMLABS for engineering services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree with any provision of these terms, please refrain from using our services.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            2. Nature of Services
+          </h2>
+          <p>
+            99COMLABS operates an engineering and development lab providing four primary technical disciplines:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li><strong>Custom Web & Mobile Application Engineering:</strong> Web portals, customer dashboards, e-commerce systems, and cross-platform mobile apps.</li>
+            <li><strong>Embedded Electronics & IoT Prototyping:</strong> Custom circuit board (PCB) design, microcontroller programming, sensor telemetry, and automation.</li>
+            <li><strong>Cloud Hosting & Security Management:</strong> Cloud server deployment, automated backups, zero-downtime migration, and firewall hardening.</li>
+            <li><strong>Digital Growth & Search Optimization:</strong> Local Kerala and national search optimization (SEO), technical audits, and high-converting landing pages.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            3. Project Estimates & Statements of Work (SOW)
+          </h2>
+          <p>
+            All ballpark pricing figures, cost ranges, and preliminary estimates provided via website forms, telephone conversations, WhatsApp chats (+91 9745551513), or email are non-binding budgetary indications.
+          </p>
+          <p class="mt-2">
+            A binding commercial engagement requires a formal written Statement of Work (SOW) or commercial contract executed by both parties, detailing specific project milestones, technical deliverables, delivery schedules, and payment schedules.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            4. Intellectual Property & 100% Code Ownership
+          </h2>
+          <p>
+            We believe in honest client ownership with zero artificial lock-in:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li><strong>Client Deliverables:</strong> Upon complete settlement of all agreed milestone payments under an executed SOW, the client owns 100% of all custom source code, database architectures, graphics, and documentation created specifically for their project.</li>
+            <li><strong>Pre-Existing Tools & Libraries:</strong> 99COMLABS retains intellectual property rights to its proprietary starter modules, open-source utilities, and general technical methodologies utilized during development. The client receives a perpetual, royalty-free, non-exclusive license to utilize these integrated elements within the delivered software.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            5. Client Responsibilities & Approvals
+          </h2>
+          <p>
+            Successful engineering requires active collaboration. Clients agree to:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li>Provide timely access to required third-party API credentials, domain names, and technical documentation.</li>
+            <li>Provide authentic text, images, and brand materials (ensuring the client holds necessary copyrights).</li>
+            <li>Review and provide milestone acceptance feedback within ten (10) business days of delivery notification.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            6. Limitation of Liability
+          </h2>
+          <p>
+            To the maximum extent permitted by applicable Indian law:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li>99COMLABS will deliver services with professional skill and diligence consistent with industry standards.</li>
+            <li>In no event shall 99COMLABS be liable for indirect, incidental, punitive, or consequential damages, including loss of business revenue, profits, data, or operational interruption.</li>
+            <li>The total aggregate liability of 99COMLABS under any claim arising from an engagement shall be strictly limited to the actual amount paid by the client under the specific Statement of Work giving rise to the claim.</li>
+            <li>99COMLABS is not responsible for outages caused by upstream cloud infrastructure providers (e.g. AWS, Cloudflare, local telecommunications carriers) or unauthorized intrusions resulting from compromised client credentials.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            7. Preserved Support Helpdesk & Maintenance
+          </h2>
+          <p>
+            Our dedicated helpdesk at <a href="/support/" class="text-brand-700 underline">https://99comlabs.co.in/support/</a> is maintained to service active clients. Ticket response times, bug fixes, and feature additions outside the initial warranty period (typically 30 days post-launch) are governed by specific Annual Maintenance Contracts (AMC) or hourly engineering service agreements.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            8. Governing Law & Kerala Legal Jurisdiction
+          </h2>
+          <p>
+            These Terms of Service and any contractual disputes arising between the client and 99COMLABS shall be governed by, interpreted, and construed exclusively in accordance with the substantive laws of India.
+          </p>
+          <p class="mt-2">
+            Both parties irrevocably agree that the competent civil courts located in <strong>Malappuram District, Kerala, India</strong> [CONFIRM SPECIFIC JURISDICTION COURT] shall possess exclusive territorial and subject-matter jurisdiction over any legal suit, action, or proceeding arising out of or related to our website or engineering contracts.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-heading text-2xl font-bold text-content-primary mb-3">
+            9. Contact & Inquiries
+          </h2>
+          <div class="bg-surface-muted rounded-xl border border-line-light p-6 my-4 space-y-2 text-sm sm:text-base">
+            <p><strong>Business Name:</strong> 99COMLABS</p>
+            <p><strong>Official Inquiries:</strong> <a href="mailto:connect@99comlabs.co.in" class="text-brand-700 underline">connect@99comlabs.co.in</a></p>
+            <p><strong>Support Desk:</strong> <a href="mailto:support@99comlabs.co.in" class="text-brand-700 underline">support@99comlabs.co.in</a></p>
+            <p><strong>Phone / WhatsApp:</strong> <a href="tel:+919745551513" class="text-brand-700 underline">+91 9745551513</a></p>
+            <p><strong>Registered Region:</strong> Kerala, India - PIN 676304 [CONFIRM FULL STREET ADDRESS]</p>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Quick Back Nav -->
+      <div class="mt-12 pt-8 border-t border-line-light flex items-center justify-between text-sm">
+        <a href="/" class="font-semibold text-brand-700 hover:underline flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Home
+        </a>
+        <a href="/privacy/" class="font-semibold text-brand-700 hover:underline flex items-center gap-1">
+          View Privacy Policy
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
