@@ -14,7 +14,7 @@ const companyLinks = [
   { name: 'Engineering Projects', href: '/projects/' },
   { name: 'About 99COMLABS', href: '/about/' },
   { name: 'Engineering Blog', href: '/blog/' },
-  { name: 'Preserved Client Helpdesk', href: '/support/', isHighlight: true },
+  { name: 'Client Support Portal', href: '/support/' },
   { name: 'Contact & Project Inquiry', href: '/contact/' },
 ];
 ---
@@ -66,28 +66,19 @@ const companyLinks = [
         </ul>
       </div>
 
-      <!-- Column 3: Company & Direct Helpdesk -->
+      <!-- Column 3: Company & Support -->
       <div>
         <h3 class="font-heading font-semibold text-white text-base tracking-wide mb-4">
-          Company & Helpdesk
+          Company & Support
         </h3>
         <ul class="space-y-2.5 text-sm">
           {companyLinks.map((item) => (
             <li>
               <a
                 href={item.href}
-                class={`transition-colors block py-0.5 ${
-                  item.isHighlight
-                    ? 'text-emerald-400 font-semibold hover:text-emerald-300'
-                    : 'text-slate-400 hover:text-white'
-                }`}
+                class="text-slate-400 hover:text-white transition-colors block py-0.5"
               >
                 {item.name}
-                {item.isHighlight && (
-                  <span class="ml-1 text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.5 rounded font-mono">
-                    #99LAB
-                  </span>
-                )}
               </a>
             </li>
           ))}

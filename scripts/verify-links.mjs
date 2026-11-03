@@ -308,14 +308,12 @@ for (const img of allDiscoveredImages) {
   }
 }
 
-// 5. Preserved Support Route (/support/) Specific Integrity Verification
-console.log('Verifying preserved route /support/ portal integrity...');
+// 5. Support Route (/support/) Specific Integrity Verification
+console.log('Verifying modern support route /support/ portal integrity...');
 const supportHtmlPath = path.join(distDir, 'support', 'index.html');
-const supportCssPath = path.join(distDir, 'support', 'support.css');
-const supportJsPath = path.join(distDir, 'support', 'support.js');
 
 if (!fs.existsSync(supportHtmlPath)) {
-  errors.push('[ROUTE PRESERVATION] Missing critical preserved route file: dist/support/index.html');
+  errors.push('[ROUTE PRESERVATION] Missing critical support route file: dist/support/index.html');
 } else {
   const supportContent = fs.readFileSync(supportHtmlPath, 'utf8');
 
@@ -325,28 +323,16 @@ if (!fs.existsSync(supportHtmlPath)) {
   }
 
   // Verify Ticket ID Generation reference
-  if (!supportContent.includes('99LAB') && !fs.readFileSync(supportJsPath, 'utf8').includes('99LAB')) {
+  if (!supportContent.includes('99LAB')) {
     errors.push('[ROUTE PRESERVATION] dist/support/ does not contain dynamic ticket ID generator (#99LAB-XXXXX).');
   }
 
   // Verify FAQ accordions
-  if (!supportContent.includes('faq') && !supportContent.includes('accordion')) {
+  if (!supportContent.includes('faq') && !supportContent.includes('accordion') && !supportContent.includes('details')) {
     warnings.push('[ROUTE PRESERVATION] dist/support/index.html may be missing FAQ accordion sections.');
   }
 
   console.log('  ✓ dist/support/index.html exists and contains verified support desk components.');
-}
-
-if (!fs.existsSync(supportCssPath)) {
-  errors.push('[ROUTE PRESERVATION] Missing asset: dist/support/support.css');
-} else {
-  console.log('  ✓ dist/support/support.css exists.');
-}
-
-if (!fs.existsSync(supportJsPath)) {
-  errors.push('[ROUTE PRESERVATION] Missing asset: dist/support/support.js');
-} else {
-  console.log('  ✓ dist/support/support.js exists.');
 }
 
 // 6. Report Results

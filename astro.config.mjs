@@ -18,10 +18,7 @@ export default defineConfig({
       applyBaseStyles: true
     }),
     sitemap({
-      filter: (page) => !page.includes('/404'),
-      customPages: [
-        'https://99comlabs.co.in/support/'
-      ]
+      filter: (page) => !page.includes('/404')
     })
   ]
 });
