@@ -136,9 +136,7 @@ const articles = [
             <div>
               <!-- Meta Row: Category Badge & Read Time -->
               <div class="flex items-center justify-between gap-2 mb-4">
-                <span class={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold border ${article.badgeClass}`}>
-                  {article.category}
-                </span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">{article.category}</span>
                 <span class="text-xs font-medium text-content-muted flex items-center gap-1">
                   <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
