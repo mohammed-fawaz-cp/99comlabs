@@ -1,68 +1,43 @@
 ---
 // src/pages/projects.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
-const pageTitle = "Engineering Projects & Case Studies";
-const pageDescription = "Explore authentic engineering projects from 99COMLABS in Kerala: enterprise billing POS, industrial IoT smart motor automation, and cross-platform PDF suites.";
-const breadcrumbs = [{ name: 'Projects', url: '/projects/' }];
+const pageTitle = "Selected Projects & Client Case Studies";
+const pageDescription = "Explore practical software and hardware projects built by 99COMLABS: enterprise retail billing POS and industrial IoT smart motor automation.";
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Projects', href: '/projects/' }
+];
 
 const projects = [
   {
     id: 'billing-app',
-    title: 'Enterprise Billing Application',
-    subheadline: 'High-Reliability POS & Delivery Settlement Platform',
-    category: 'software',
-    categoryLabel: 'Enterprise Software',
-    badge: 'Active Deployment',
-    verbatimDesc: 'Cross-platform POS & settlement platform engineered with an offline-first SQLite database, real-time MongoDB cloud synchronization, delivery settlement module, and automated financial report generation.',
-    problem: 'Retailers, wholesalers, and multi-counter stores face severe revenue loss when internet connectivity fails during peak hours. Cloud-only POS systems freeze, halting checkout lines, delaying delivery fleets, and throwing end-of-day cash reconciliation into chaos.',
-    solution: 'We engineered an offline-first desktop application combining an Electron container and Next.js interface with an embedded SQLite database. Cashiers execute sub-millisecond checkout transactions without internet connectivity. When the connection resumes, a background Node.js sync engine bi-directionally synchronizes transactions with a central MongoDB cloud cluster with automated conflict resolution.',
-    highlights: [
-      'Zero-latency offline checkout powered by local ACID-compliant SQLite storage.',
-      'Background cloud synchronization with MongoDB when internet connectivity resumes.',
-      'Delivery settlement module tracking driver routes, cash collection, and credit disbursements.',
-      'One-click automated financial reporting, GST tax summaries, and thermal receipt printing.'
-    ],
-    techStack: ['Electron', 'Next.js', 'SQLite', 'MongoDB', 'Node.js', 'Offline-First'],
-    schematic: 'Counter POS ──► Local SQLite (ACID) ──► Background Sync ──► Cloud MongoDB Cluster'
+    title: 'Enterprise Billing & POS Platform',
+    category: 'Retail & Commercial Software',
+    summary: 'A fast, offline-first point of sale system engineered for supermarkets, distributors, and busy retail counters.',
+    problem: 'Retail and wholesale stores lose thousands of rupees when the internet disconnects during peak checkout hours. Standard cloud billing systems freeze, stopping checkout queues, delaying delivery drivers, and creating end-of-day accounting errors.',
+    solution: 'We built a high-speed desktop and counter billing platform that operates with 100% functionality even when completely offline. Cashiers can ring up items, apply discounts, and print thermal receipts in milliseconds. As soon as internet connectivity returns, all transaction data and inventory counts automatically synchronize to the central cloud without data loss or conflicts.',
+    benefits: [
+      'Uninterrupted checkout: Cashiers can bill customers and print receipts with zero internet connection.',
+      'Automatic cloud sync: Safely uploads all sales and inventory data the moment connection returns.',
+      'Fleet & delivery tracking: Records driver routes, cash collection, and customer credit settlements.',
+      'One-click business reports: Instantly generates GST summaries, daily cash tallies, and sales analytics.'
+    ]
   },
   {
     id: 'industrial-iot',
-    title: 'Life & Tree — Industrial IoT Smart Motor Automation',
-    subheadline: 'Real-Time Remote Telemetry & Fail-Safe Machine Control',
-    category: 'iot',
-    categoryLabel: 'Industrial IoT & Hardware',
-    badge: 'Embedded System',
-    verbatimDesc: 'Industrial IoT hardware automation platform featuring real-time MQTT telemetry, interactive hardware TUI device simulator, REST API backend, NGINX reverse proxy, and multi-tier admin control panel.',
-    problem: 'Commercial agriculture, water utilities, and industrial processing units suffer costly motor coil burnouts caused by voltage fluctuations, phase loss, and dry running. Unattended pump stations require continuous manual inspection, causing high labor costs and equipment failures.',
-    solution: 'We developed an end-to-end IoT automation platform combining custom edge microcontrollers, Embedded C/Python firmware, and an edge protective cutoff mechanism. Edge sensors sample current, voltage, flow rates, and temperatures in real time. Sensor data is published over cellular networks using lightweight MQTT through an NGINX reverse proxy to a Node.js backend and real-time administrative dashboard.',
-    highlights: [
-      'Autonomous edge protection logic cutting power in milliseconds during voltage surges or dry runs.',
-      'Low-bandwidth MQTT messaging engineered for rural cellular networks (2G/4G).',
-      'Hardened NGINX reverse proxy handling SSL termination and high-concurrency connections.',
-      'Multi-tier admin dashboard with live gauges, operational audit trails, and automated WhatsApp alerts.'
-    ],
-    techStack: ['MQTT Protocol', 'Embedded C', 'Python', 'Node.js', 'NGINX', 'REST APIs'],
-    schematic: 'Edge Sensors & Motors ──► Microcontroller (C/Python) ──► MQTT over 4G ──► NGINX ──► Node.js Telemetry'
-  },
-  {
-    id: 'mypdf-suite',
-    title: 'MyPDF — Cross-Platform Document Processing Suite',
-    subheadline: '100% On-Device Offline Document Security Suite',
-    category: 'mobile',
-    categoryLabel: 'Mobile & Utilities',
-    badge: 'Cross-Platform',
-    verbatimDesc: 'Modern cross-platform document processing application engineered for offline PDF manipulation: merging, splitting, compressing, rendering, and custom document manipulation.',
-    problem: 'Businesses, lawyers, and healthcare providers frequently need to merge, compress, or split sensitive PDF documents. Uploading confidential client records, tax forms, or contracts to free web converters exposes businesses to severe data leaks and privacy violations.',
-    solution: 'We engineered a cross-platform document utility built with Flutter and Dart. Utilizing Riverpod for reactive state management and a custom compiled local PDF processing engine, every file operation executes entirely in device memory. Zero bytes of sensitive document data ever leave the user’s device.',
-    highlights: [
-      '100% on-device execution guaranteeing total data confidentiality without cloud upload risks.',
-      'Sub-second PDF merging, splitting, lossless compression, watermark application, and page sorting.',
-      'Reactive state architecture powered by Riverpod delivering smooth 60fps document previews.',
-      'Single maintainable codebase deploying natively to Android, iOS, and desktop environments.'
-    ],
-    techStack: ['Flutter', 'Dart', 'Riverpod', 'PDF Engine', 'Offline-First', 'Cross-Platform'],
-    schematic: 'Local Document File ──► Flutter/Riverpod UI ──► In-Memory PDF Engine ──► Local Output File'
+    title: 'Life & Tree — Smart Motor Automation',
+    category: 'Industrial IoT & Hardware',
+    summary: 'An industrial IoT telemetry and automation solution connecting agricultural water pumps and commercial motors to a secure mobile dashboard.',
+    problem: 'Agricultural operations, water processing facilities, and factory pumps suffer expensive motor burnouts caused by voltage fluctuations, single-phasing, and dry runs. Unattended pump stations require constant physical visits, wasting labor hours and risking equipment failure.',
+    solution: 'We engineered an all-in-one smart device that connects directly to the motor starter and sensors. The device continuously reads voltage, line current, and water flow in real time. If power spikes or the well runs dry, the system automatically cuts power in milliseconds to protect the motor from burning out, while notifying the owner directly on their smartphone.',
+    benefits: [
+      'Automatic burnout protection: Cuts motor power within milliseconds during voltage surges or dry runs.',
+      'Live mobile monitoring: Check water pressure, voltage, and running status from any smartphone.',
+      'Remote on/off control: Start or stop pumps remotely without needing to travel to the field.',
+      'Instant status notifications: Sends alerts when power fails or maintenance is required.'
+    ]
   }
 ];
 ---
@@ -91,231 +66,264 @@ const projects = [
       },
       {
         "@type": "CollectionPage",
-        "name": "Engineering Projects & Selected Works — 99COMLABS",
+        "name": "Selected Projects & Client Case Studies — 99COMLABS",
         "description": pageDescription,
         "url": "https://99comlabs.co.in/projects/",
         "hasPart": projects.map((p) => ({
           "@type": "SoftwareApplication",
           "name": p.title,
-          "description": p.verbatimDesc,
-          "applicationCategory": p.categoryLabel,
-          "operatingSystem": "Cross-Platform"
+          "description": p.summary,
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All"
         }))
       }
     ]
   })} />
 
-  <!-- Hero Section -->
+  <!-- Breadcrumbs -->
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Hero Section (Clean & Flat) -->
   <section class="py-14 sm:py-20 bg-surface-light border-b border-line-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-content-primary mb-6 leading-tight">
-          Engineering Projects & Selected Works
+          Projects & Case Studies
         </h1>
 
         <p class="text-base sm:text-lg text-content-secondary leading-relaxed mb-6">
-          Explore authentic engineering solutions built by 99COMLABS. From offline-first enterprise retail systems and remote industrial IoT automation to secure cross-platform mobile utilities—engineered for reliability and performance.
+          Real software and hardware products built by 99COMLABS to solve everyday operational challenges for businesses in Kerala and across India.
         </p>
-
-        <div class="flex items-center gap-4 text-xs text-content-muted">
-          <span>✓ 100% Verified Codebases</span>
-          <span>•</span>
-          <span>✓ Zero Fabricated Metrics</span>
-          <span>•</span>
-          <span>✓ Proven in Production</span>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Category Filter Section -->
-  <section class="py-12 bg-surface-muted border-b border-line-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Projects Showcase Section -->
+  <section class="py-14 sm:py-20 bg-surface-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
-      <!-- Filter Bar -->
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
-        <div>
-          <h2 class="font-heading text-xl font-bold text-content-primary">
-            Filter Case Studies by Discipline
-          </h2>
-          <p class="text-xs sm:text-sm text-content-muted mt-1">
-            Select a domain to inspect relevant engineering architectures.
-          </p>
-        </div>
+      <!-- Project 1: Enterprise Billing & POS Platform -->
+      <article id="billing-app" class="bg-surface-light rounded-2xl border border-line-light overflow-hidden shadow-card transition-all">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          
+          <!-- Visual Illustration Preview -->
+          <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-800 p-8 sm:p-10 flex flex-col justify-center items-center text-white border-b lg:border-b-0 lg:border-r border-line-light">
+            <svg class="w-full max-w-md h-auto" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="POS checkout interface preview">
+              <rect width="360" height="220" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+              <rect x="16" y="16" width="328" height="28" rx="6" fill="#0f172a"/>
+              <circle cx="32" cy="30" r="4" fill="#ef4444"/>
+              <circle cx="46" cy="30" r="4" fill="#f59e0b"/>
+              <circle cx="60" cy="30" r="4" fill="#10b981"/>
+              <text x="76" y="34" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#94a3b8" font-weight="600">RETAIL COUNTER POS • OFFLINE-READY</text>
+              <rect x="16" y="54" width="200" height="150" rx="6" fill="#0f172a"/>
+              <line x1="26" y1="78" x2="206" y2="78" stroke="#334155" stroke-width="1"/>
+              <line x1="26" y1="102" x2="206" y2="102" stroke="#334155" stroke-width="1"/>
+              <line x1="26" y1="126" x2="206" y2="126" stroke="#334155" stroke-width="1"/>
+              <line x1="26" y1="150" x2="206" y2="150" stroke="#334155" stroke-width="1"/>
+              <text x="28" y="70" font-family="'Inter', sans-serif" font-size="10" fill="#94a3b8">Billed Items</text>
+              <text x="175" y="70" font-family="'Inter', sans-serif" font-size="10" fill="#94a3b8">Rate</text>
+              <rect x="226" y="54" width="118" height="150" rx="6" fill="#1e3a8a" stroke="#2563eb" stroke-width="1"/>
+              <text x="238" y="78" font-family="'Inter', sans-serif" font-size="11" fill="#bfdbfe">Total Bill</text>
+              <text x="238" y="104" font-family="'Space Grotesk', sans-serif" font-size="18" font-weight="700" fill="#ffffff">₹ 2,450.00</text>
+              <text x="238" y="128" font-family="'Inter', sans-serif" font-size="10" fill="#93c5fd">Tax Included</text>
+              <rect x="236" y="152" width="98" height="34" rx="6" fill="#2563eb"/>
+              <text x="246" y="173" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#ffffff">Print Receipt</text>
+            </svg>
+            <p class="text-xs text-slate-400 mt-4 text-center">
+              Offline Counter Interface & Instant Thermal Receipt Module
+            </p>
+          </div>
 
-        <!-- Accessible Filter Buttons (min-h-touch >= 44px) -->
-        <div class="flex flex-wrap items-center gap-2 bg-surface-card p-1.5 rounded-xl border border-line-light shadow-sm" role="tablist" aria-label="Project Categories">
-          <button
-            type="button"
-            role="tab"
-            aria-selected="true"
-            data-filter="all"
-            class="filter-tab px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center bg-brand-700 text-white shadow-sm focus-visible:ring-4 focus-visible:ring-brand-400"
-          >
-            All Projects (3)
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected="false"
-            data-filter="software"
-            class="filter-tab px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center text-content-secondary hover:text-brand-700 hover:bg-surface-subtle focus-visible:ring-4 focus-visible:ring-brand-400"
-          >
-            Software (1)
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected="false"
-            data-filter="iot"
-            class="filter-tab px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center text-content-secondary hover:text-brand-700 hover:bg-surface-subtle focus-visible:ring-4 focus-visible:ring-brand-400"
-          >
-            IoT Hardware (1)
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected="false"
-            data-filter="mobile"
-            class="filter-tab px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-150 min-h-touch min-w-touch flex items-center justify-center text-content-secondary hover:text-brand-700 hover:bg-surface-subtle focus-visible:ring-4 focus-visible:ring-brand-400"
-          >
-            Mobile (1)
-          </button>
-        </div>
-      </div>
-
-      <!-- Projects Grid (Static Default with Progressive Enhancement) -->
-      <div id="projects-grid" class="space-y-12">
-        {projects.map((project) => (
-          <article
-            id={project.id}
-            data-category={project.category}
-            class="project-card bg-surface-card rounded-2xl border border-line-light p-6 sm:p-8 lg:p-10 shadow-card hover:shadow-card-hover transition-all duration-200"
-          >
-            <!-- Card Header Meta -->
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-line-light">
-              <div class="flex items-center gap-2.5">
-                <span class="px-3 py-1 rounded-md text-xs font-mono font-semibold uppercase tracking-wider bg-brand-50 text-brand-700 border border-brand-200">
-                  {project.categoryLabel}
-                </span>
-                <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
-                  {project.badge}
-                </span>
-              </div>
-              <span class="text-xs text-content-muted font-mono">
-                Verified System Artifact
-              </span>
-            </div>
-
-            <!-- Title & Lead -->
-            <div class="max-w-4xl mb-8">
-              <h3 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-2">
-                {project.title}
-              </h3>
-              <p class="text-base sm:text-lg font-medium text-brand-700 mb-4">
-                {project.subheadline}
-              </p>
-              <blockquote class="bg-surface-subtle p-4 rounded-xl border-l-4 border-brand-600 text-sm font-mono text-content-secondary italic">
-                "{project.verbatimDesc}"
-              </blockquote>
-            </div>
-
-            <!-- Two-Column Problem & Solution Architecture -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-              <div class="bg-surface-muted p-6 rounded-xl border border-line-light">
-                <h4 class="font-heading text-base font-bold text-content-primary mb-3 flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500" aria-hidden="true"></span>
-                  The Operational Challenge
-                </h4>
-                <p class="text-sm text-content-secondary leading-relaxed">
-                  {project.problem}
-                </p>
-              </div>
-
-              <div class="bg-surface-muted p-6 rounded-xl border border-line-light">
-                <h4 class="font-heading text-base font-bold text-content-primary mb-3 flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
-                  The 99COMLABS Engineering Solution
-                </h4>
-                <p class="text-sm text-content-secondary leading-relaxed">
-                  {project.solution}
-                </p>
-              </div>
-            </div>
-
-            <!-- Architectural Highlights -->
-            <div class="mb-8">
-              <h4 class="font-heading text-sm font-bold uppercase tracking-wider text-content-muted mb-4">
-                Key Engineering Deliverables & Architecture
-              </h4>
-              <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-content-secondary">
-                {project.highlights.map((item) => (
-                  <li class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-subtle border border-line-light">
-                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <!-- Schematic Diagram Block -->
-            <div class="mb-8 bg-surface-dark text-slate-200 p-5 rounded-xl border border-line-dark font-mono text-xs overflow-x-auto">
-              <span class="block text-slate-400 font-bold uppercase tracking-wider mb-2 text-[11px]">
-                Data & Control Pipeline Architecture
-              </span>
-              <code>{project.schematic}</code>
-            </div>
-
-            <!-- Tech Stack Badges -->
+          <!-- Project Details -->
+          <div class="lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
             <div>
-              <h4 class="font-heading text-xs font-bold uppercase tracking-wider text-content-muted mb-3">
-                Technologies & Protocols Employed
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                {project.techStack.map((tech) => (
-                  <span class="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-surface-muted text-content-primary border border-line-medium">
-                    {tech}
-                  </span>
-                ))}
+              <p class="text-xs font-semibold text-brand-700 uppercase tracking-wider mb-2">
+                {projects[0].category}
+              </p>
+              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-3">
+                {projects[0].title}
+              </h2>
+              <p class="text-base text-content-secondary leading-relaxed mb-6 font-medium">
+                {projects[0].summary}
+              </p>
+
+              <!-- Problem & Solution Overview -->
+              <div class="space-y-4 mb-8 text-sm text-content-secondary">
+                <div>
+                  <h3 class="font-semibold text-content-primary mb-1">The Problem:</h3>
+                  <p class="leading-relaxed">{projects[0].problem}</p>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-content-primary mb-1">Our Solution:</h3>
+                  <p class="leading-relaxed">{projects[0].solution}</p>
+                </div>
+              </div>
+
+              <!-- Key Benefits for Clients -->
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-content-primary mb-3">
+                  Key Benefits for Business Owners
+                </h3>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-content-secondary">
+                  {projects[0].benefits.map((benefit) => (
+                    <li class="flex items-start gap-2.5">
+                      <svg class="w-4 h-4 text-brand-700 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="leading-relaxed">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          </article>
-        ))}
-      </div>
+
+            <div class="mt-8 pt-6 border-t border-line-light flex flex-wrap items-center gap-4">
+              <a
+                href="/contact/"
+                class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors min-h-touch"
+              >
+                Discuss a Similar Project
+              </a>
+              <a
+                href="https://wa.me/919745551513?text=Hello%2C%20I%20saw%20your%20Enterprise%20Billing%20Application%20and%20want%20to%20discuss%20a%20similar%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-content-primary hover:text-emerald-700 transition-colors"
+              >
+                <span>Ask on WhatsApp</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Project 2: Life & Tree — Smart Motor Automation -->
+      <article id="industrial-iot" class="bg-surface-light rounded-2xl border border-line-light overflow-hidden shadow-card transition-all">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          
+          <!-- Visual Illustration Preview -->
+          <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-800 p-8 sm:p-10 flex flex-col justify-center items-center text-white border-b lg:border-b-0 lg:border-r border-line-light">
+            <svg class="w-full max-w-md h-auto" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Smart IoT pump controller interface preview">
+              <rect width="360" height="220" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+              <rect x="16" y="16" width="328" height="28" rx="6" fill="#0f172a"/>
+              <circle cx="32" cy="30" r="4" fill="#10b981"/>
+              <text x="44" y="34" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#10b981" font-weight="600">LIVE TELEMETRY: PUMP 01 • ACTIVE</text>
+              <rect x="16" y="54" width="102" height="150" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+              <text x="26" y="78" font-family="'Inter', sans-serif" font-size="10" fill="#94a3b8">LINE VOLTAGE</text>
+              <text x="26" y="106" font-family="'Space Grotesk', sans-serif" font-size="18" font-weight="700" fill="#ffffff">415 V</text>
+              <text x="26" y="126" font-family="'Inter', sans-serif" font-size="9" fill="#10b981">Phase Stable</text>
+              <rect x="126" y="54" width="102" height="150" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+              <text x="136" y="78" font-family="'Inter', sans-serif" font-size="10" fill="#94a3b8">WATER FLOW</text>
+              <text x="136" y="106" font-family="'Space Grotesk', sans-serif" font-size="18" font-weight="700" fill="#ffffff">4.8 Bar</text>
+              <text x="136" y="126" font-family="'Inter', sans-serif" font-size="9" fill="#10b981">Normal Flow</text>
+              <rect x="236" y="54" width="108" height="150" rx="6" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+              <text x="246" y="78" font-family="'Inter', sans-serif" font-size="10" fill="#a7f3d0">MOTOR STATE</text>
+              <text x="246" y="106" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#ffffff">RUNNING</text>
+              <rect x="244" y="152" width="92" height="34" rx="6" fill="#059669"/>
+              <text x="254" y="173" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#ffffff">Remote Stop</text>
+            </svg>
+            <p class="text-xs text-slate-400 mt-4 text-center">
+              Smart IoT Pump Controller & Live Mobile Sensor Telemetry
+            </p>
+          </div>
+
+          <!-- Project Details -->
+          <div class="lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
+            <div>
+              <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider mb-2">
+                {projects[1].category}
+              </p>
+              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-content-primary mb-3">
+                {projects[1].title}
+              </h2>
+              <p class="text-base text-content-secondary leading-relaxed mb-6 font-medium">
+                {projects[1].summary}
+              </p>
+
+              <!-- Problem & Solution Overview -->
+              <div class="space-y-4 mb-8 text-sm text-content-secondary">
+                <div>
+                  <h3 class="font-semibold text-content-primary mb-1">The Problem:</h3>
+                  <p class="leading-relaxed">{projects[1].problem}</p>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-content-primary mb-1">Our Solution:</h3>
+                  <p class="leading-relaxed">{projects[1].solution}</p>
+                </div>
+              </div>
+
+              <!-- Key Benefits for Clients -->
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-content-primary mb-3">
+                  Key Benefits for Business Owners
+                </h3>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-content-secondary">
+                  {projects[1].benefits.map((benefit) => (
+                    <li class="flex items-start gap-2.5">
+                      <svg class="w-4 h-4 text-emerald-700 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="leading-relaxed">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-line-light flex flex-wrap items-center gap-4">
+              <a
+                href="/contact/"
+                class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-brand-700 hover:bg-brand-800 rounded-lg transition-colors min-h-touch"
+              >
+                Discuss a Similar Project
+              </a>
+              <a
+                href="https://wa.me/919745551513?text=Hello%2C%20I%20saw%20your%20Life%20and%20Tree%20IoT%20automation%20project%20and%20want%20to%20discuss%20a%20similar%20device."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-content-primary hover:text-emerald-700 transition-colors"
+              >
+                <span>Ask on WhatsApp</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </article>
 
     </div>
   </section>
 
   <!-- Project Inquiry Conversion Section -->
-  <section class="py-16 sm:py-20 bg-surface-light">
+  <section class="py-16 sm:py-20 bg-surface-light border-t border-line-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900 text-white rounded-3xl p-8 sm:p-12 lg:p-16 shadow-xl relative overflow-hidden">
         <div class="max-w-2xl relative z-10 space-y-6">
           <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Let's architect your custom software, IoT, or cloud project.
+            Have a custom software or IoT hardware idea?
           </h2>
 
           <p class="text-base sm:text-lg text-brand-100 leading-relaxed">
-            Whether you need an offline-first desktop platform, custom IoT sensor hardware, or a secure cross-platform mobile application, our engineers in Kerala deliver production-grade code with 100% ownership.
+            Whether you need a custom business web application or smart hardware connected to a phone app, 99COMLABS delivers reliable engineering with 100% code ownership.
           </p>
 
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
             <a
               href="/contact/"
-              class="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-brand-950 bg-white hover:bg-brand-50 rounded-lg shadow-sm hover:shadow transition-all duration-150 min-h-touch focus-visible:ring-4 focus-visible:ring-white"
+              class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-900 bg-white hover:bg-slate-100 rounded-lg shadow-sm transition-colors min-h-touch"
             >
               Get a Free Project Quote
             </a>
-
             <a
-              href="https://wa.me/919745551513?text=Hello%2099COMLABS%2C%20I%20reviewed%20your%20projects%20and%20would%20like%20to%20discuss%20a%20new%20engineering%20initiative."
+              href="https://wa.me/919745551513"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors min-h-touch focus-visible:ring-4 focus-visible:ring-emerald-400"
+              class="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white bg-whatsapp-base hover:bg-whatsapp-hover rounded-lg transition-colors min-h-touch"
             >
-              <span>Chat on WhatsApp (+91 9745551513)</span>
+              <span>Chat on WhatsApp</span>
             </a>
           </div>
         </div>
@@ -323,42 +331,3 @@ const projects = [
     </div>
   </section>
 </BaseLayout>
-
-<!-- Zero-Dependency Accessible Tab Filtering Script -->
-<script is:inline>
-  (function () {
-    const tabs = document.querySelectorAll('.filter-tab');
-    const cards = document.querySelectorAll('.project-card');
-
-    if (!tabs.length || !cards.length) return;
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', function () {
-        const filter = this.getAttribute('data-filter');
-
-        // Update active tab visual & ARIA states
-        tabs.forEach((t) => {
-          const isCurrent = t === tab;
-          t.setAttribute('aria-selected', String(isCurrent));
-          if (isCurrent) {
-            t.classList.add('bg-brand-700', 'text-white', 'shadow-sm');
-            t.classList.remove('text-content-secondary', 'hover:bg-surface-subtle');
-          } else {
-            t.classList.remove('bg-brand-700', 'text-white', 'shadow-sm');
-            t.classList.add('text-content-secondary', 'hover:bg-surface-subtle');
-          }
-        });
-
-        // Filter project cards
-        cards.forEach((card) => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-      });
-    });
-  })();
-</script>

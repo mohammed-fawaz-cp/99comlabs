@@ -318,7 +318,7 @@ if (!fs.existsSync(supportHtmlPath)) {
   const supportContent = fs.readFileSync(supportHtmlPath, 'utf8');
 
   // Verify FormSubmit integration
-  if (!supportContent.includes('formsubmit.co') && !supportContent.includes('support@99comlabs.co.in')) {
+  if (!supportContent.includes('formsubmit.co') && !supportContent.includes('connect@99comlabs.co.in') && !supportContent.includes('support@99comlabs.co.in')) {
     errors.push('[ROUTE PRESERVATION] dist/support/index.html is missing FormSubmit ticket submission integration.');
   }
 

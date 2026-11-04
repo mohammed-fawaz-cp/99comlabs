@@ -13,6 +13,12 @@ export default defineConfig({
     inlineStylesheets: 'auto'
   },
   compressHTML: true,
+  vite: {
+    build: {
+      cssMinify: true,
+      minify: 'esbuild'
+    }
+  },
   integrations: [
     tailwind({
       applyBaseStyles: true
