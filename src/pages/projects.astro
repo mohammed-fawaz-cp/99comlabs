@@ -1,7 +1,6 @@
 ---
 // src/pages/projects.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumb from '../components/Breadcrumb.astro';
 
 const pageTitle = "Selected Projects & Client Case Studies";
 const pageDescription = "Explore practical software and hardware projects built by 99COMLABS: enterprise retail billing POS and industrial IoT smart motor automation.";
@@ -80,10 +79,7 @@ const projects = [
     ]
   })} />
 
-  <!-- Breadcrumbs -->
-  <Breadcrumb items={breadcrumbs} />
-
-  <!-- Hero Section (Clean & Flat) -->
+<!-- Hero Section (Clean & Flat) -->
   <section class="py-14 sm:py-20 bg-surface-light border-b border-line-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
